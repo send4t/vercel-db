@@ -6,10 +6,13 @@ export default async (req, res) => {
        const db = client.db("sample_mflix");
 
        const movies = await db
-           .collection("movies")
-           .find({})
-           .sort({ metacritic: -1 })
-           .limit(10)
+                .aggregate([
+            {
+             $sample: {
+                size: 1
+                 }
+              }
+            ])
            .toArray();
 
        res.json(movies);
