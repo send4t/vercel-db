@@ -1,4 +1,4 @@
-import {connectToDatabase} from "../../lib/connectToDatabase";
+import {connectToDatabase} from "/lib/connectToDatabase.js";
 
 export default async function handler(request,response){
     try{
