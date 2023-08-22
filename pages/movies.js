@@ -3,7 +3,7 @@ import clientPromise from "../lib/mongodb";
 export default function Movies({ movies }) {
     return (
         <div>
-            <h1>Top 20 Movies of All Time</h1>
+            <h1>A random movie from the list of all movies</h1>
             <p>
                 <small>(According to Metacritic)</small>
             </p>
@@ -27,9 +27,9 @@ export async function getServerSideProps() {
 
         const movies = await db
             .collection("movies")
-            .find({})
-            .sort({ metacritic: -1 })
-            .limit(1)
+            .aggregate(
+                [ { $sample: { size: 1 } } ]
+             )
             .toArray();
 
         return {
