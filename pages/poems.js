@@ -1,18 +1,20 @@
 import clientPromise from "../lib/mongodb";
 
+       
+
+
 export default function Poems({ poems }) {
     return (
         <div>
+
             <h1>A random poem from the list of all poems</h1>
-            <p>
-                <small><a href="/poemsUp" class="button">Vers feltöltés</a>  </small>
-            </p>
+            
             <ul>
                 {poems.map((poem) => (
                     <li>
                         <h2>{poem.author}</h2>
                         <h3>{poem.title}</h3>
-                        <p>{poem.content}</p>
+                        <p>{poem.content}</p>  
                     </li>
                 ))}
             </ul>
@@ -31,7 +33,7 @@ export async function getServerSideProps() {
         const poems = await db
             .collection("poe")
             .aggregate(
-                [ { $sample: { size: 1 } } ]
+                [ { $sample: { size: 12 } } ]
              )
             .toArray();
 
