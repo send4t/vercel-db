@@ -25,7 +25,7 @@ export default function Home() {
     return (
         <div>
             <h1>Vers feltöltés</h1>
-            <div className={styles.formGroup}>
+            <div className={styles.inputfield}>
             <input
                 type="text"
                 placeholder="Szerző"
@@ -34,7 +34,7 @@ export default function Home() {
                 required
             />
               </div>
-            <div className={styles.formGroup}>
+            <div className={styles.inputfield}>
             <input
                 type="text"
                 placeholder="Cím"
@@ -43,7 +43,7 @@ export default function Home() {
                 required
             />
             </div>
-            <div className={styles.formGroup}>
+            <div className={styles.formgroup}>
             <textarea
                 placeholder="Vers szövege"
                 value={content}

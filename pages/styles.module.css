@@ -1,13 +1,13 @@
 /* styles.module.css */
-.form-group {
-    margin: 2rem;
+.formgroup {
+    width: 200px;
+    height:200px;
+    margin:20px;
 }
 
-.input-field {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.inputfield {
+    width: fit-content;
+    margin:20px;
 }
 
 .button {
