@@ -31,6 +31,7 @@ export async function getServerSideProps() {
         const client = await clientPromise;
         const db = client.db("poems");
 
+    
         const poems = await db
             .collection("poe")
             .aggregate(
