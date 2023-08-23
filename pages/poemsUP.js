@@ -5,6 +5,7 @@ export default function Home() {
     const [author, setAuthor] = useState("");
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const [isUploaded, setIsUploaded] = useState(false); // Initialize the state for displaying 'Feltöltve'
 
     const handleSubmit = async () => {
         // Call your API here to insert the poem into the database
@@ -20,6 +21,10 @@ export default function Home() {
         setAuthor("");
         setTitle("");
         setContent("");
+    
+        // Set the state to show 'Feltöltve'
+        setIsUploaded(true);
+
     };
 
     return (
@@ -52,6 +57,15 @@ export default function Home() {
             />
             </div>
             <button onClick={handleSubmit} className={styles.button}>Beküldöm a verset</button>
+            
+            {isUploaded && (
+                <div>
+                    <p>Feltöltve</p>
+                    <p>
+                    <small><a href="./poems"> Vissza a versekhez</a></small>
+                    </p>
+                </div>
+                 )}
         </div>
     );
 }
