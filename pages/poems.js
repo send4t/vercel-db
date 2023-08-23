@@ -8,7 +8,7 @@ export default function Poems({ poems }) {
         <div>
             <small><a href="./poemsUP">Feltöltés</a></small>
 
-            <h1>A random poem from the list of all poems</h1>
+            <h1>Egy random vers az ünnepnapokra</h1>
             
             <ul>
                 {poems.map((poem) => (
