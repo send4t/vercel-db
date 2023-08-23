@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./styles.module.css"; // Import the CSS module
 
 export default function Home() {
     const [author, setAuthor] = useState("");
@@ -23,25 +24,34 @@ export default function Home() {
 
     return (
         <div>
-            <h1>Insert Poem</h1>
+            <h1>Vers feltöltés</h1>
+            <div className={styles.formGroup}>
             <input
                 type="text"
-                placeholder="Author"
+                placeholder="Szerző"
                 value={author}
                 onChange={(e) => setAuthor(e.target.value)}
+                required
             />
+              </div>
+            <div className={styles.formGroup}>
             <input
                 type="text"
-                placeholder="Title"
+                placeholder="Cím"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+                required
             />
+            </div>
+            <div className={styles.formGroup}>
             <textarea
-                placeholder="Content"
+                placeholder="Vers szövege"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
+                required
             />
-            <button onClick={handleSubmit}>Submit Poem</button>
+            </div>
+            <button onClick={handleSubmit} className={styles.button}>Beküldöm a verset</button>
         </div>
     );
 }
