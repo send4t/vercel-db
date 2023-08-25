@@ -37,3 +37,10 @@
     border-radius: 4px;
     cursor: pointer;
 }
+
+.poems{
+    display: grid; /* Add this to establish a flex container */
+    align-items: center;
+    justify-content: center; /* Use justify-content to center horizontally */
+    
+}

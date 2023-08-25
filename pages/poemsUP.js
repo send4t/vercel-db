@@ -8,6 +8,11 @@ export default function Home() {
     const [isUploaded, setIsUploaded] = useState(false); // Initialize the state for displaying 'Feltöltve'
 
     const handleSubmit = async () => {
+        if (!author || !title || !content) {
+            alert("Tölts ki minden mezőt!");
+            return;
+        }
+    
         // Call your API here to insert the poem into the database
         const response = await fetch("/api/insert-poems", {
             method: "POST",
@@ -16,7 +21,7 @@ export default function Home() {
             },
             body: JSON.stringify({ author, title, content }),
         });
-
+    
         // Reset form fields after submission
         setAuthor("");
         setTitle("");
@@ -24,9 +29,12 @@ export default function Home() {
     
         // Set the state to show 'Feltöltve'
         setIsUploaded(true);
-
     };
-
+      
+    
+    
+    
+    
     return (
         <div>
             <div className={styles.title}><h1>Vers feltöltés</h1></div>

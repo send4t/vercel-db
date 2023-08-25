@@ -1,22 +1,30 @@
 import clientPromise from "../lib/mongodb";
-
-       
+import React, { Fragment } from "react";
+import styles from "./styles.module.css"; // Import the CSS module
 
 
 export default function Poems({ poems }) {
+    const addLineBreak = (str) =>
+    str.split('\n').map((subStr, index) => (
+        <Fragment key={index}>
+            {subStr}
+            <br />
+        </Fragment>
+    ));
+
     return (
-        <div>
+        <div className={styles.poems}>
             <small><a href="./poemsUP">Feltöltés</a></small>
 
             <h1>Egy random vers az ünnepnapokra</h1>
             
             <ul>
                 {poems.map((poem) => (
-                    <li>
+                    <lu>
                         <h2>{poem.author}</h2>
                         <h3>{poem.title}</h3>
-                        <p>{poem.content}</p>  
-                    </li>
+                        <p>{addLineBreak(poem.content)}</p>
+                    </lu>
                 ))}
             </ul>
             <p>
