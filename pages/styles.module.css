@@ -1,18 +1,37 @@
 /* styles.module.css */
 .formgroup {
+    display: flex; /* Add this to establish a flex container */
+    align-items: center;
+    justify-content: center; /* Use justify-content to center horizontally */
     width: 200px;
     height:200px;
     margin:20px;
+   
+}
+
+.title{
+    display: flex; /* Add this to establish a flex container */
+    align-items: center;
+    justify-content: center; /* Use justify-content to center horizontally */
 }
 
 .inputfield {
-    width: fit-content;
+   
+    display: flex; /* Add this to establish a flex container */
+    align-items: center;
+    justify-content: center; /* Use justify-content to center horizontally */
     margin:20px;
+    align-items: center;
+   
 }
 
 .button {
+    display: flex; /* Add this to establish a flex container */
+    align-items: center;
+    justify-content: center; /* Use justify-content to center horizontally */
+    
     padding: 0.5rem 1rem;
-    background-color: #007bff;
+    background-color: #ffffff;
     color: #fff;
     border: none;
     border-radius: 4px;

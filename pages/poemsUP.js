@@ -29,7 +29,7 @@ export default function Home() {
 
     return (
         <div>
-            <h1>Vers feltöltés</h1>
+            <div className={styles.title}><h1>Vers feltöltés</h1></div>
             <div className={styles.inputfield}>
             <input
                 type="text"
@@ -48,7 +48,7 @@ export default function Home() {
                 required
             />
             </div>
-            <div className={styles.formgroup}>
+            <div className={styles.inputfield}>
             <textarea
                 placeholder="Vers szövege"
                 value={content}
@@ -56,7 +56,9 @@ export default function Home() {
                 required
             />
             </div>
-            <button onClick={handleSubmit} className={styles.button}>Beküldöm a verset</button>
+            <div  className={styles.button}>
+                
+            <button onClick={handleSubmit}>Beküldöm a verset</button>
             
             {isUploaded && (
                 <div>
@@ -66,6 +68,7 @@ export default function Home() {
                     </p>
                 </div>
                  )}
+                 </div>
         </div>
     );
 }
