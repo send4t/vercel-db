@@ -14,11 +14,15 @@ export default function Poems({ poems }) {
 
     return (
         <div className={styles.poems}>
-            <small><a href="./poemsUP">Feltöltés</a></small>
+             <div  className={styles.button}>
+              <a href="/poemsUP">  
+            <button >Vers feltöltés</button>
+            </a>
+            </div>
 
-            <h1>Egy random vers az ünnepnapokra</h1>
+            <h1 >Egy random vers az ünnepnapokra</h1>
             
-            <ul>
+            <ul className={styles.poems}>
                 {poems.map((poem) => (
                     <lu>
                         <h2>{poem.author}</h2>
@@ -27,9 +31,16 @@ export default function Poems({ poems }) {
                     </lu>
                 ))}
             </ul>
-            <p>
-                <small><a href="./poems">Véletlen vers</a></small>
-            </p>
+            
+                  
+            <div  className={styles.button}>
+              <a href="/poems">  
+            <button >Véletlen vers</button>
+            </a>
+            </div>
+
+                
+           
         </div>
     );
 }
