@@ -4,7 +4,7 @@ import styles from "./styles.module.css"; // Import the CSS module
 
 
 
-export default function Poems({ poems }) {
+export default function Poems({ recipes }) {
     const addLineBreak = (str) =>
     str.split('\n').map((subStr, index) => (
         <Fragment key={index}>
@@ -16,26 +16,26 @@ export default function Poems({ poems }) {
     return (
         <div className={`${styles.poems} ${styles.poemsPage}`}>
              <div  className={styles.button}>
-              <a href="/poemsUP">  
-            <button >Vers feltöltés</button>
+              <a href="/recipesUP">  
+            <button >Recept feltöltés</button>
             </a>
             </div>
 
-            <h1 >Egy random vers az ünnepnapokra</h1>
+            <h1 >Sok finom recept</h1>
             
             <ul className={styles.poems}>
-                {poems.map((poem) => (
+                {recipes.map((recipes) => (
                     <lu>
-                        <h2>{poem.author}</h2>
-                        <h3>{poem.title}</h3>
-                        <p>{addLineBreak(poem.content)}</p>
+                        <h2>{recipes.name}</h2>
+                        
+                        <p>{addLineBreak(recipes.recipe)}</p>
                     </lu>
                 ))}
             </ul>
             
                   
             <div  className={styles.button}>
-              <a href="/poems">  
+              <a href="/recipes">  
             <button >Véletlen vers</button>
             </a>
             </div>
@@ -49,18 +49,18 @@ export default function Poems({ poems }) {
 export async function getServerSideProps() {
     try {
         const client = await clientPromise;
-        const db = client.db("poems");
+        const db = client.db("recipes");
 
     
-        const poems = await db
-            .collection("poe")
+        const recipes = await db
+            .collection("rec")
             .aggregate(
                 [ { $sample: { size: 1 } } ]
              )
             .toArray();
 
         return {
-            props: { poems: JSON.parse(JSON.stringify(poems)) },
+            props: { recipes: JSON.parse(JSON.stringify(recipes)) },
         };
     } catch (e) {
         console.error(e);

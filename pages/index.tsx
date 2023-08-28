@@ -65,9 +65,9 @@ export default function Home({
             <p>Kérj egy verset magadnak!</p>
           </a>
 
-          <a href="" className="card">
-            <h3>... &rarr;</h3>
-            <p>Még tanulom mi lesz itt...</p>
+          <a href="/recipes" className="card">
+            <h3>Receptek &rarr;</h3>
+            <p>Kedvenc receptjeink</p>
           </a>
 
           <a
