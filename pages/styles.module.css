@@ -46,3 +46,10 @@
 }
 
 
+.images{
+    display: grid; /* Add this to establish a flex container */
+    align-items: center;
+    justify-content: center; /* Use justify-content to center horizontally */
+    width:150px
+}
+

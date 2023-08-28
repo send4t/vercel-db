@@ -1,6 +1,7 @@
 import clientPromise from "../lib/mongodb";
 import React, { Fragment } from "react";
 import styles from "./styles.module.css"; // Import the CSS module
+import Image from 'next/image'
 
 
 
@@ -24,11 +25,25 @@ export default function Poems({ recipes }) {
             <h1 >Sok finom recept</h1>
             
             <ul className={styles.poems}>
-                {recipes.map((recipes) => (
+                {recipes.map((recipes) => ( 
                     <lu>
+                       
                         <h2>{recipes.name}</h2>
+
+                      
+            <Image
+    alt="The guitarist in the concert."
+    src={recipes.image}
+    width={250}
+    height={250}
+  
+  
+/>
+{console.log(recipes)}
                         
                         <p>{addLineBreak(recipes.recipe)}</p>
+                        <h2 >Lépések</h2>
+                        <p>{addLineBreak(recipes.steps)}</p>
                     </lu>
                 ))}
             </ul>
@@ -36,7 +51,7 @@ export default function Poems({ recipes }) {
                   
             <div  className={styles.button}>
               <a href="/recipes">  
-            <button >Véletlen vers</button>
+            <button >Véletlen recept</button>
             </a>
             </div>
 
