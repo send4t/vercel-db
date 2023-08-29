@@ -7,10 +7,11 @@ export default function Home() {
     const [recipe, setRecipe] = useState("");
     const [image, setImage] = useState("");
     const [steps, setSteps] = useState("");
+    const [duration, setDuration] = useState("");
     const [isUploaded, setIsUploaded] = useState(false); // Initialize the state for displaying 'Feltöltve'
 
     const handleSubmit = async () => {
-        if (!name || !name || !image) {
+        if (!name || !name || !image ||!duration || !steps) {
             alert("Tölts ki minden mezőt!");
             return;
         }
@@ -21,14 +22,15 @@ export default function Home() {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ name, recipe, image, steps}),
+            body: JSON.stringify({ name, recipe, image, steps,duration}),
         });
     
         // Reset form fields after submission
         setName("");
         setRecipe("");
         setImage("");
-        setSteps("")
+        setSteps("");
+        setDuration("")
         
     
         // Set the state to show 'Feltöltve'
@@ -51,6 +53,18 @@ export default function Home() {
                 required
             />
               </div>
+
+              <div className={styles.inputfield}>
+            <input
+                type="text"
+                placeholder="Elkészítési idő"
+                value={duration}
+                onChange={(e) => setDuration(e.target.value)}
+                required
+            />
+              </div>
+
+
             <div className={styles.inputfield}>
             <textarea
                 placeholder="Recept hozzávalói"

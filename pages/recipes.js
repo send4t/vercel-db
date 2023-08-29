@@ -39,10 +39,10 @@ export default function Poems({ recipes }) {
   
   
 />
-{console.log(recipes)}
+<p>elkészítési idő {recipes.duration}</p>
                         
                         <p>{addLineBreak(recipes.recipe)}</p>
-                        <h2 >Lépések</h2>
+                        <h1 >Sok finom recept</h1>
                         <p>{addLineBreak(recipes.steps)}</p>
                     </lu>
                 ))}
