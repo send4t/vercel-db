@@ -3,60 +3,57 @@ import React, { Fragment } from "react";
 import styles from "./styles.module.css"; // Import the CSS module
 import Image from 'next/image'
 
-
-
 export default function Poems({ recipes }) {
-    const addLineBreak = (str) =>
-    str.split('\n').map((subStr, index) => (
-        <Fragment key={index}>
-            {subStr}
-            <br />
-        </Fragment>
-    ));
+    const addCheckboxes = (str) =>
+        str.split('\n').map((ingredient, index) => (
+            <Fragment key={index}>
+                <input type="checkbox" id={`ingredient-${index}`} />
+                <label htmlFor={`ingredient-${index}`}>{ingredient}</label>
+                <br />
+            </Fragment>
+        ));
 
     return (
         <div className={`${styles.poems} ${styles.poemsPage}`}>
-             <div  className={styles.button}>
-              <a href="/recipesUP">  
-            <button >Recept feltöltés</button>
-            </a>
+            <div className={styles.button}>
+                <a href="/recipesUP">
+                    <button>Recept feltöltés</button>
+                </a>
             </div>
 
-            <h1 >Sok finom recept</h1>
-            
-            <ul className={styles.poems}>
-                {recipes.map((recipes) => ( 
-                    <lu>
-                       
-                        <h2>{recipes.name}</h2>
+            <h1>Sok finom recept</h1>
 
-                      
-            <Image
-    alt="The guitarist in the concert."
-    src={recipes.image}
-    width={250}
-    height={250}
-  
-  
-/>
-<p>elkészítési idő {recipes.duration}</p>
-                        
-                        <p>{addLineBreak(recipes.recipe)}</p>
-                        <h1 >Sok finom recept</h1>
-                        <p>{addLineBreak(recipes.steps)}</p>
-                    </lu>
+            <ul className={styles.poems}>
+                {recipes.map((recipe) => (
+                    <li key={recipe._id}>
+                        <h2>{recipe.name}</h2>
+                        <Image
+                            alt="The guitarist in the concert."
+                            src={recipe.image}
+                            width={250}
+                            height={250}
+                        />
+                        <p>elkészítési idő {recipe.duration}</p>
+
+                        <div>
+                            <h3>Ingredients:</h3>
+                            {addCheckboxes(recipe.recipe)}
+                        </div>
+
+                        <h1>Sok finom recept</h1>
+                        <div>
+                            <h3>Steps:</h3>
+                            {addCheckboxes(recipe.steps)}
+                        </div>
+                    </li>
                 ))}
             </ul>
-            
-                  
-            <div  className={styles.button}>
-              <a href="/recipes">  
-            <button >Véletlen recept</button>
-            </a>
-            </div>
 
-                
-           
+            <div className={styles.button}>
+                <a href="/recipes">
+                    <button>Véletlen recept</button>
+                </a>
+            </div>
         </div>
     );
 }
@@ -66,12 +63,9 @@ export async function getServerSideProps() {
         const client = await clientPromise;
         const db = client.db("recipes");
 
-    
         const recipes = await db
             .collection("rec")
-            .aggregate(
-                [ { $sample: { size: 1 } } ]
-             )
+            .aggregate([{ $sample: { size: 1 } }])
             .toArray();
 
         return {
