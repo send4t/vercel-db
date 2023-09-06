@@ -42,8 +42,11 @@
     display: grid; /* Add this to establish a flex container */
     align-items: center;
     justify-content: center; /* Use justify-content to center horizontally */
-    
+      
 }
+
+
+
 
 
 .images{
@@ -53,3 +56,22 @@
     width:150px
 }
 
+
+
+.recipes {
+    display: grid; /* Add this to establish a flex container */
+    align-items: center;
+    justify-content: center; /* Use justify-content to center horizontally */
+      
+}
+
+.rec {
+    align-self: stretch; 
+    text-align: left; 
+    color: black; 
+    font-size: 16px; 
+    font-family: Heebo; 
+    font-weight: 400; 
+    word-wrap: break-word;
+    width: 650px; 
+}

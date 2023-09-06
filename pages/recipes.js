@@ -14,7 +14,7 @@ export default function Poems({ recipes }) {
         ));
 
     return (
-        <div className={`${styles.poems} ${styles.poemsPage}`}>
+        <div className={styles.recipes}>
             <div className={styles.button}>
                 <a href="/recipesUP">
                     <button>Recept feltöltés</button>
@@ -23,7 +23,7 @@ export default function Poems({ recipes }) {
 
             <h1>Sok finom recept</h1>
 
-            <ul className={styles.poems}>
+            <ul className={styles.rec}>
                 {recipes.map((recipe) => (
                     <li key={recipe._id}>
                         <h2>{recipe.name}</h2>
@@ -35,13 +35,11 @@ export default function Poems({ recipes }) {
                         />
                         <p>elkészítési idő {recipe.duration}</p>
 
-                        <div>
+                        <div className={styles.rec}>
                             <h3>Ingredients:</h3>
                             {addCheckboxes(recipe.recipe)}
                         </div>
-
-                        <h1>Sok finom recept</h1>
-                        <div>
+                        <div className={styles.rec}>
                             <h3>Steps:</h3>
                             {addCheckboxes(recipe.steps)}
                         </div>
