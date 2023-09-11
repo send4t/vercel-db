@@ -30,7 +30,7 @@
     align-items: center;
     justify-content: center; /* Use justify-content to center horizontally */
     
-    padding: 0.5rem 1rem;
+   
     background-color: #ffffff;
     color: #fff;
     border: none;
@@ -59,19 +59,33 @@
 
 
 .recipes {
-    display: grid; /* Add this to establish a flex container */
-    align-items: center;
-    justify-content: center; /* Use justify-content to center horizontally */
-      
+        width: 100%; /* Set the container's width to 100% of its parent or viewport */
+        max-width: 1200px; /* Optional: Set a maximum width to control the container's width on larger screens */
+        margin: 0 auto; /* Center the container horizontally */
+        padding: 20px; /* Optional: Add padding to the container */
+        box-sizing: border-box; /* Include padding and border in the width calculation */      
 }
 
 .rec {
     align-self: stretch; 
-    text-align: left; 
+    
     color: black; 
     font-size: 16px; 
     font-family: Heebo; 
     font-weight: 400; 
     word-wrap: break-word;
-    width: 650px; 
+    width: 100%; 
+
+    
+}
+
+.text {
+    text-align: center; 
+    display: block;
+}
+
+.h1{
+    display: grid; /* Add this to establish a flex container */
+    align-items: center;
+    justify-content: center;
 }

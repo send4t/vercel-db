@@ -1,10 +1,22 @@
 import clientPromise from "../lib/mongodb";
 import React, { Fragment } from "react";
 import styles from "./styles.module.css"; // Import the CSS module
-
+import React, { useEffect } from 'react';
 
 
 export default function Poems({ poems }) {
+
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = 'https://telegram.org/js/telegram-web-app.js';
+        script.async = true;
+        document.body.appendChild(script);
+        return () => {
+          document.body.removeChild(script);
+        };
+      }, []);
+
+
     const addLineBreak = (str) =>
     str.split('\n').map((subStr, index) => (
         <Fragment key={index}>

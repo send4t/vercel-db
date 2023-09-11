@@ -21,19 +21,19 @@ export default function Poems({ recipes }) {
                 </a>
             </div>
 
-            <h1>Sok finom recept</h1>
+            <h1 className={styles.title}>Sok finom recept</h1>
 
             <ul className={styles.rec}>
                 {recipes.map((recipe) => (
                     <li key={recipe._id}>
-                        <h2>{recipe.name}</h2>
+                        <h2 className={styles.text}>{recipe.name}</h2>
                         <Image
                             alt="The guitarist in the concert."
                             src={recipe.image}
                             width={250}
                             height={250}
                         />
-                        <p>elkészítési idő {recipe.duration}</p>
+                        <p className={styles.text}>elkészítési idő {recipe.duration}</p>
 
                         <div className={styles.rec}>
                             <h3>Ingredients:</h3>
