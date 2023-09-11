@@ -1,7 +1,7 @@
 import clientPromise from "../lib/mongodb";
 import React, { Fragment } from "react";
 import styles from "./styles.module.css"; // Import the CSS module
-import React, { useEffect } from 'react';
+
 
 
 export default function Poems({ poems }) {
