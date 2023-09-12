@@ -14,56 +14,22 @@ export default function Poems({ recipes }) {
         ));
 
     return (
-
         <div className={styles.container}>
-              <h1 className={[styles.ttext, styles.h1].join(" ") }>Sok finom recept</h1>
         <div className={styles.firstBox}>
-         <div>
-        {recipes.map((recipe) => (
-            <lu key={recipe._id}>
-              
-
             <div className={styles.secondBox}>
                 <div className={styles.thirdBox}>
-                    <img className={styles.picture} src={recipe.image} />
-
-                    
+                    <img className={styles.picture} src="https://via.placeholder.com/227x250" />
                 </div>
                 <div className={styles.column}>
-                    <div className={styles.ttext}>{recipe.name}</div>
-                    <div className={styles.prepTime}>Elkészítési idő {recipe.duration}</div>
+                    <div className={styles.ttext}>Recept neve</div>
+                    <div className={styles.tttext}>Recept neve</div>
                 </div>
             </div>
-            <div className={styles.tttext}>
-                                <h3>Ingredients:</h3>
-                            {addCheckboxes(recipe.recipe)}
-            </div>
-
-            <div className={[styles.tttext, styles.test].join(" ") }>
-                <h3>Steps:</h3>
-                            {addCheckboxes(recipe.steps)}
-                </div>
-            </lu>
-            ))}
-            </div>  
+            <div className={styles.tttext}>Recept hozzavalok</div>
+            <div className={styles.tttext}>recept lépések</div>
         </div>
         <div className={styles.finalBox}></div>
-        
-        
-        <div className={styles.button}>
-                <a href="/recipes">
-                    <button>Véletlen recept</button>
-                </a>
-            </div>
-
-
-            <div className={styles.button}>
-              <a href="/recipesUP">
-                  <button>Recept feltöltés</button>
-              </a>
-                  </div>  
-
-        </div>
+    </div>
     );
 }
 
