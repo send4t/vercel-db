@@ -171,6 +171,10 @@
         position: absolute
 }
 
+label{
+    margin-bottom: 50px;
+}
+
 .test{
     margin-bottom:50px;
 }
