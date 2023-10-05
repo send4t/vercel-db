@@ -6,7 +6,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@nextui-org/button": "^2.0.21",
     "@nextui-org/react": "^2.1.13",
     "@types/node": "18.7.5",
     "@types/react": "16.9.17",
@@ -24,6 +23,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@types/babel__core": "^7.20.2",
     "@types/lodash": "^4.14.199",
     "@types/node": "18.7.5",
     "@types/react": "16.9.17",
