@@ -113,20 +113,32 @@ export default function Poems({ recipes }) {
   }
  
 
-export async function getServerSideProps() {
+  export async function getServerSideProps() {
     try {
-        const client = await clientPromise;
-        const db = client.db("recipes");
-
-        const recipes = await db
-            .collection("rec")
-            .aggregate([{ $sample: { size: 1 } }])
-            .toArray();
-
-        return {
-            props: { recipes: JSON.parse(JSON.stringify(recipes)) },
-        };
+      const client = await clientPromise;
+      const db = client.db("recipes");
+  
+      const recipes = await db
+        .collection("rec")
+        .aggregate([
+          {
+            $match: {
+              $expr: {
+                $lt: [ // Compare the numeric value
+                  { $toInt: { $regexFind: { input: "$prepTime", regex: /\d+/ } } }, // Extract and convert to integer
+                  30
+                ]
+              }
+            }
+          },
+          { $sample: { size: 1 } }
+        ])
+        .toArray();
+  
+      return {
+        props: { recipes: JSON.parse(JSON.stringify(recipes)) },
+      };
     } catch (e) {
-        console.error(e);
+      console.error(e);
     }
-}
+  }

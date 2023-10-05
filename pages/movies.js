@@ -1,8 +1,15 @@
 import clientPromise from "../lib/mongodb";
+import {Button} from '@nextui-org/react'
+import {Pagination} from "@nextui-org/react";
 
 export default function Movies({ movies }) {
     return (
         <div>
+            <Pagination total={10} initialPage={1} />
+
+            <Button>test
+
+            </Button>
             <h1>A random movie from the list of all movies</h1>
             <p>
                 <small>(According to Metacritic)</small>

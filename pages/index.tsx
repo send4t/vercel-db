@@ -1,6 +1,10 @@
+import React from 'react'
+
 import Head from 'next/head'
 import clientPromise from '../lib/mongodb'
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
+import {Button} from "@nextui-org/button";
+
 
 type ConnectionStatus = {
   isConnected: boolean
@@ -36,12 +40,17 @@ export default function Home({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <div className="container">
+<Button color="primary">
+      Button
+    </Button>
       <Head>
         <title>Valami izgi</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
+       <h1 className="text-5xl underline"> yo</h1>
+      
         <h1 className="title">
           Te jártál már itt?
         </h1>

@@ -1,34 +1,39 @@
+
+
+
 /* styles.module.css */
+/*
 .formgroup {
-    display: flex; /* Add this to establish a flex container */
+    display: flex; 
     align-items: center;
-    justify-content: center; /* Use justify-content to center horizontally */
+    justify-content: center; 
     width: 200px;
     height:200px;
     margin:20px;
    
 }
-
+*/
+/*
 .title{
-    display: flex; /* Add this to establish a flex container */
+    display: flex; 
     align-items: center;
-    justify-content: center; /* Use justify-content to center horizontally */
+    justify-content: center; 
 }
 
 .inputfield {
    
-    display: flex; /* Add this to establish a flex container */
+    display: flex; 
     align-items: center;
-    justify-content: center; /* Use justify-content to center horizontally */
+    justify-content: center; 
     margin:20px;
     align-items: center;
    
 }
 
 .button {
-    display: flex; /* Add this to establish a flex container */
+    display: flex; 
     align-items: center;
-    justify-content: center; /* Use justify-content to center horizontally */
+    justify-content: center; 
    
     border: none;
     border-radius: 4px;
@@ -36,9 +41,9 @@
 }
 
 .poems{
-    display: grid; /* Add this to establish a flex container */
+    display: grid; 
     align-items: center;
-    justify-content: center; /* Use justify-content to center horizontally */
+    justify-content: center; 
       
 }
 
@@ -47,20 +52,19 @@
 
 
 .images{
-    display: grid; /* Add this to establish a flex container */
+    display: grid; 
     align-items: center;
-    justify-content: center; /* Use justify-content to center horizontally */
+    justify-content: center; 
     width:150px
 }
 
 
-
 .recipes {
-        width: 100%; /* Set the container's width to 100% of its parent or viewport */
-        max-width: 1200px; /* Optional: Set a maximum width to control the container's width on larger screens */
-        margin: 0 auto; /* Center the container horizontally */
-        padding: 20px; /* Optional: Add padding to the container */
-        box-sizing: border-box; /* Include padding and border in the width calculation */      
+        width: 100%; 
+        max-width: 1200px; 
+        margin: 0 auto; 
+        padding: 20px; 
+        box-sizing: border-box; 
 }
 
 .rec {
@@ -82,18 +86,18 @@
 }
 
 .h1{
-    display: grid; /* Add this to establish a flex container */
+    display: grid; 
     align-items: center;
     justify-content: center;
   margin-bottom:30px;
  
 }
+*/
 
 
+/*A probáim Figma alapján */
 
-
-
-
+/*
 .picture{
     width: 250px; 
     height: auto;
@@ -183,3 +187,90 @@
         font-weight: 400;
          word-wrap: break-word
 }
+
+*/
+
+
+/*A probáim Builder.io alapján*/
+
+
+/*
+.div {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.columnWrapper {
+  display: flex;
+}
+@media (max-width: 991px) {
+  .columnWrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+.row {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  width: calc(50% - 10px);
+  margin-left: 0px;
+}
+@media (max-width: 991px) {
+  .row {
+    width: 100%;
+  }
+}
+.image {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+}
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  width: calc(50% - 10px);
+  margin-left: 20px;
+}
+@media (max-width: 991px) {
+  .contentWrapper {
+    width: 100%;
+  }
+}
+.recipeName {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  line-height: normal;
+  height: auto;
+}
+.prepareTime {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  line-height: normal;
+  height: auto;
+}
+.additionalText {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  line-height: normal;
+  height: auto;
+}
+.cookingTime {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  line-height: normal;
+  height: auto;
+}
+.additionalText-2 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  line-height: normal;
+  height: auto;
+} 
+*/
