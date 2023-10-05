@@ -175,7 +175,11 @@
         position: absolute
 }
 
-.test label{
+.label{
+    margin-bottom: 50px;
+}
+
+.test{
     margin-bottom:50px;
 }
 
@@ -187,6 +191,7 @@
         font-weight: 400;
          word-wrap: break-word
 }
+<<<<<<< HEAD
 
 */
 
@@ -274,3 +279,5 @@
   height: auto;
 } 
 */
+=======
+>>>>>>> 0a9f022fd7a1cb528ec080bddc41183d348209d0
