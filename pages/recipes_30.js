@@ -5,6 +5,7 @@ import {Card, CardHeader, CardBody, CardFooter, Divider, Link, Image} from "@nex
 import {Checkbox} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import {Chip} from "@nextui-org/react";
+import {Spacer} from "@nextui-org/react";
 
 
 const CustomCheckbox = ({ children }) => {
@@ -40,6 +41,7 @@ export default function Poems({ recipes }) {
 
           
           <div className="">
+            <Spacer y={4} />
 
 
   
