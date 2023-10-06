@@ -5,6 +5,7 @@ import {Card, CardHeader, CardBody, CardFooter, Divider, Link, Image} from "@nex
 import {Checkbox} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import {Chip} from "@nextui-org/react";
+import {Spacer} from "@nextui-org/react";
 
 
 const CustomCheckbox = ({ children }) => {
@@ -41,13 +42,29 @@ export default function Poems({ recipes }) {
           
           <div className="">
 
-
+<Spacer y={4} />
   
                    <div className="flex-wrap justify-center items-bottom flex gap-4 ">
                    <a href="/recipes"> <Chip color="default">Give me random</Chip> </a>
-                   <a href="/recipes_30"><Chip color="primary">Less than 30 minutes</Chip> </a> 
-                    <Chip color="secondary">Less than 40 minutes</Chip>
-                    <Chip color="success">Salad</Chip>
+                   <a href="/recipes_30"><Chip variant="shadow"
+      classNames={{
+        base: "bg-gradient-to-br from-yellow-500 to-red-500 border-small border-white/50 shadow-pink-500/30",
+        content: "drop-shadow shadow-black text-white",
+      }}>Less than 30 minutes</Chip> </a> 
+                    
+                    <Chip variant="shadow"
+      classNames={{
+        base: "bg-gradient-to-br from-blue-500 to-pink-500 border-small border-white/50 shadow-pink-500/30",
+        content: "drop-shadow shadow-black text-white",
+      }}>Less than 40 minutes</Chip>
+                    
+                    <Chip variant="shadow"
+      classNames={{
+        base: "bg-gradient-to-br from-green-500 to-yellow-500 border-small border-white/50 shadow-pink-500/30",
+        content: "drop-shadow shadow-black text-white",
+      }}>Salad</Chip>
+
+<a href="/recipesUP"> <Chip color="default">Upload</Chip> </a>
                     </div> 
           <div >
            <div>
