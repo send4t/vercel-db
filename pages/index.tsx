@@ -47,7 +47,7 @@ export default function Home({
       </Head>
 
       <main>
-       <h1 className="text-5xl underline"> yo</h1>
+    
       
         <h1 className="title">
           Te jártál már itt?
