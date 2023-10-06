@@ -50,6 +50,8 @@ export default function Poems({ recipes }) {
                    <a href="/recipes_30"><Chip color="primary">Less than 30 minutes</Chip> </a> 
                     <Chip color="secondary">Less than 40 minutes</Chip>
                     <Chip color="success">Salad</Chip>
+                    
+<a href="/recipesUP"> <Chip color="default">Upload</Chip> </a>
                     </div> 
           <div >
            <div>
