@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import styles from "./styles.module.css"; // Import the CSS module
-import { textSpanIntersectsWithTextSpan } from "typescript";
+import {Input} from "@nextui-org/react";
+import {Spacer} from "@nextui-org/react";
+import {Button} from "@nextui-org/react";
+import {Textarea} from "@nextui-org/react";
 
 export default function Home() {
     const [name, setName] = useState("");
@@ -10,10 +13,11 @@ export default function Home() {
     const [prepTime, setprepTime] = useState("");
     const [totalTime, settotalTime] = useState("");
     const [isUploaded, setIsUploaded] = useState(false); // Initialize the state for displaying 'Feltöltve'
+    const [isSalad, setIsSalad] = useState(false);
 
     const handleSubmit = async () => {
         if (!name || !name || !image ||!prepTime || !steps || !totalTime ) {
-            alert("Tölts ki minden mezőt!");
+            alert("Please fill in all fields");
             return;
         }
     
@@ -23,7 +27,7 @@ export default function Home() {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ name, recipe, image, steps, prepTime, totalTime}),
+            body: JSON.stringify({ name, recipe, image, steps, prepTime, totalTime,isSalad}),
         });
     
         // Reset form fields after submission
@@ -34,91 +38,86 @@ export default function Home() {
         setprepTime("")
         settotalTime("")
         
-    
+
+
         // Set the state to show 'Feltöltve'
         setIsUploaded(true);
     };
-      
-    
-    
-    
+   
+  
     
     return (
-        <div>
-            <div className={styles.title}><h1>Recept feltöltése</h1></div>
-            <div className={styles.inputfield}>
+
+
+
+<div className="flex  flex-col items-center justify-center ">
+        <div className="w-[400px]">
+        <Spacer y={4} />
+<div className="text-center	font-bold">Recept feltöltése</div>
+<Spacer y={3} />
+<div className="">
+      <Input type="text"  value={name} label="Recipe name" onChange={(e) => setName(e.target.value)} required />
+    </div>
+    <Spacer y={4} />
+    <div className="">
+      <Input type="text"  value={prepTime} label="Prep time (minutes)" onChange={(e) => setprepTime(e.target.value)} required />
+    </div>
+    <Spacer y={4} />
+    <div className="">
+      <Input type="text"  value={totalTime} label="Total time (minutes)" onChange={(e) => settotalTime(e.target.value)} required />
+    </div>
+    <Spacer y={4} />
+  
+
+    <div className="">
+      <Textarea type="text"  value={recipe} label="Ingredients" onChange={(e) => setRecipe(e.target.value)} required />
+    </div>
+    <Spacer y={4} />
+    <div className="">
+      <Textarea type="text"  value={steps} label="Steps" onChange={(e) => setSteps(e.target.value)} required />
+    </div>
+    <Spacer y={4} />
+
+<div className="">
+      <Input type="text"  value={image} label="Image link" onChange={(e) => setImage(e.target.value)} required />
+    </div>
+    <Spacer y={4} />
+
+    </div>          
+
+
+    <div className="">
+        <div className="flex items-center">
+          <span className="font-normal italic">Is it a salad?</span>
+          <Spacer x={8}/>
+          <label className="switch">
             <input
-                type="text"
-                placeholder="Recept neve"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
+              type="checkbox"
+              checked={isSalad}
+              onChange={() => setIsSalad(!isSalad)}
             />
-              </div>
+            <span className="slider"></span>
+          </label>
+        </div>
+      </div>
 
-              <div className={styles.inputfield}>
-            <input
-                type="text"
-                placeholder="Előkészítési idő"
-                value={prepTime}
-                onChange={(e) => setprepTime(e.target.value)}
-                required
-            />
-              </div>
-
-              <div className={styles.inputfield}>
-            <input
-                type="text"
-                placeholder="Teljes főzési idő"
-                value={totalTime}
-                onChange={(e) => settotalTime(e.target.value)}
-                required
-            />
-              </div>
-
-
-
-            <div className={styles.inputfield}>
-            <textarea
-                placeholder="Recept hozzávalói"
-                value={recipe}
-                onChange={(e) => setRecipe(e.target.value)}
-                required
-            />
-            </div>
-
-            <div className={styles.inputfield}>
-            <textarea
-                placeholder="Recept lépései"
-                value={steps}
-                onChange={(e) => setSteps(e.target.value)}
-                required
-            />
-            </div>
-
-
-            <div className={styles.inputfield}>
-            <input
-                type="text"
-                placeholder="Kép linkje"
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-                required
-            />
-            </div>
-
+      <Spacer y={4} />
 
 
             
-            <div  className={styles.button}>
-                
-            <button onClick={handleSubmit}>Beküldöm a receptet</button>
-            
+            <div  >
+            <Button color="primary" onClick={handleSubmit}>
+                    Send recipe
+            </Button>
+                       
             {isUploaded && (
                 <div>
-                    <p>Feltöltve</p>
+                    <p>Uploaded</p>
                     <p>
-                    <small><a href="./recipes"> Vissza a receptekhez</a></small>
+                    <a href="/recipes"><Button href="/recipes">
+                    Back to recipes
+                     </Button>
+                     </a> 
                     </p>
                 </div>
                  )}

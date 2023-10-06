@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     return;
   }
 
-  const { name,duration, recipe, image,steps} = req.body; // Extract data from the request body
+  const { name,prepTime,totalTime, recipe, image,steps,salad} = req.body; // Extract data from the request body
 
   try {
     await client.connect();
@@ -18,10 +18,12 @@ export default async function handler(req, res) {
 
     const newRecipe = {
       name: name,
-      duration:duration,
+      prepTime:prepTime,
+      totalTime:totalTime,
       recipe: recipe,
       image:image,
-      steps:steps
+      steps:steps,
+      salad:salad
      
     };
 

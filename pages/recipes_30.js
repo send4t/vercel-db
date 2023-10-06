@@ -72,11 +72,13 @@ export default function Poems({ recipes }) {
           <p className="text-small text-default-500">{recipe.prepTime}</p>
           <p className="text-small text-default-500 mt-5">Total time</p>
           <p className="text-small text-default-500">{recipe.totalTime}</p>
+         
         </div>
+      
       </CardHeader>
     </Card>
     </div>
-
+    
     <div className="flex space-x-10 flex-wrap justify-center items-top my-10 ">
     <Card className="max-w-[400px] ">
       
@@ -118,21 +120,29 @@ export default function Poems({ recipes }) {
       const client = await clientPromise;
       const db = client.db("recipes");
   
-      const recipes = await db
-        .collection("rec")
-        .aggregate([
-          {
-            $match: {
-              $expr: {
-                $lt: [ // Compare the numeric value
-                  { $toInt: { $regexFind: { input: "$prepTime", regex: /\d+/ } } }, // Extract and convert to integer
-                  30
-                ]
+      const aggregationPipeline = [
+        {
+          $addFields: {
+            prepTimeInt: {
+              $convert: {
+                input: { $regexFind: { input: "$totalTime", regex: /\d+/ } },
+                to: "int",
+                onError: 0
               }
             }
-          },
-          { $sample: { size: 1 } }
-        ])
+          }
+        },
+        {
+          $match: {
+            prepTimeInt: { $lt: 30 }
+          }
+        },
+        { $sample: { size: 1 } }
+      ];
+  
+      const recipes = await db
+        .collection("rec")
+        .aggregate(aggregationPipeline)
         .toArray();
   
       return {
@@ -140,5 +150,8 @@ export default function Poems({ recipes }) {
       };
     } catch (e) {
       console.error(e);
+      return {
+        props: { recipes: [] }, // Return an empty array or handle the error as needed
+      };
     }
   }
