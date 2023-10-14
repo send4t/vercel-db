@@ -62,7 +62,6 @@ export default function Poems({ recipes }) {
 
 
 
-
 <Spacer y={4} />
   
                    <div className="flex-wrap justify-center items-bottom flex gap-4 ">
@@ -155,6 +154,7 @@ export default function Poems({ recipes }) {
       );
   }
  
+  
 
 export async function getServerSideProps() {
     try {
