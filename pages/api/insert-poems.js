@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     return;
   }
 
-  const { author, title, content } = req.body; // Extract data from the request body
+  const { author, title, content,tag } = req.body; // Extract data from the request body
 
   try {
     await client.connect();
@@ -20,6 +20,7 @@ export default async function handler(req, res) {
       author: author,
       title: title,
       content: content,
+      tag:tag,
     };
 
     const result = await coll.insertOne(newPoem); // Insert the new poem

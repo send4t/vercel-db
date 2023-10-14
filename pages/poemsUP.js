@@ -1,33 +1,40 @@
 import React, { useState } from "react";
 import styles from "./styles.module.css"; // Import the CSS module
+import {Input} from "@nextui-org/react";
+import {Spacer} from "@nextui-org/react";
+import {Button} from "@nextui-org/react";
+import {Textarea} from "@nextui-org/react";
 
 export default function Home() {
     const [author, setAuthor] = useState("");
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-    const [isUploaded, setIsUploaded] = useState(false); // Initialize the state for displaying 'Feltöltve'
+    const [tag, setTag] = useState("");
+
+    const [isUploaded, setIsUploaded] = useState(false); // Initialize the state for displaying 'Uploaded'
 
     const handleSubmit = async () => {
-        if (!author || !title || !content) {
-            alert("Tölts ki minden mezőt!");
+        if (!author || !title || !content || !tag) {
+            alert("Fill in all fields");
             return;
         }
     
-        // Call your API here to insert the poem into the database
+        // Call the API here to insert the poem into the database
         const response = await fetch("/api/insert-poems", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ author, title, content }),
+            body: JSON.stringify({ author, title, content,tag }),
         });
     
         // Reset form fields after submission
         setAuthor("");
         setTitle("");
         setContent("");
+        setTag("")
     
-        // Set the state to show 'Feltöltve'
+        // Set the state to show 'Uploaded'
         setIsUploaded(true);
     };
       
@@ -36,47 +43,50 @@ export default function Home() {
     
     
     return (
-        <div>
-            <div className={styles.title}><h1>Vers feltöltés</h1></div>
-            <div className={styles.inputfield}>
-            <input
-                type="text"
-                placeholder="Szerző"
-                value={author}
-                onChange={(e) => setAuthor(e.target.value)}
-                required
-            />
-              </div>
-            <div className={styles.inputfield}>
-            <input
-                type="text"
-                placeholder="Cím"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-            />
+        <div className="flex  flex-col items-center justify-center">
+            <div className="w-[400px]">
+            <div className="text-center	font-bold">Upload a poem</div>
+            
+            <div className="">
+                 <Input type="text"  value={author} label="Author" onChange={(e) => setAuthor(e.target.value)} required />
             </div>
-            <div className={styles.inputfield}>
-            <textarea
-                placeholder="Vers szövege"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                required
-            />
+
+            <Spacer y={4} />
+            
+            <div className="">
+                 <Input type="text"  value={content} label="Title" onChange={(e) => setTitle(e.target.value)} required />
             </div>
-            <div  className={styles.button}>
+
+            <Spacer y={4} />
+
+            <div className="">
+                 <Textarea type="text"  value={content} label="Content" onChange={(e) => setContent(e.target.value)} required />
+            </div>
+
+            <Spacer y={4} />
+
+            <div className="">
+                 <Input type="text"  value={tag} label="Tag" onChange={(e) => setTag(e.target.value)} required />
+            </div>
+
+            <Spacer y={4} />
+
+            <div >
                 
-            <button onClick={handleSubmit}>Beküldöm a verset</button>
+            <Button color="primary" onClick={handleSubmit}>
+                    Send recipe
+            </Button>
             
             {isUploaded && (
                 <div>
-                    <p>Feltöltve</p>
+                    <p>Uploaded</p>
                     <p>
-                    <small><a href="./poems"> Vissza a versekhez</a></small>
+                    <small><a href="./poems"> Back to poems</a></small>
                     </p>
                 </div>
                  )}
                  </div>
+        </div>
         </div>
     );
 }

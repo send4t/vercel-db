@@ -125,24 +125,8 @@ export default function Poems({ recipes }) {
   
       const aggregationPipeline = [
         {
-          $addFields: {
-            prepTimeInt: {
-              $convert: {
-                input: {
-                  $regexFind: {
-                    input: "$totalTime",
-                    regex: /\d+/
-                  }
-                },
-                to: "int",
-                onError: 0
-              }
-            }
-          }
-        },
-        {
           $match: {
-            prepTimeInt: { $lt: 30 }
+            isSalad: true // Filter based on the isSalad field
           }
         },
         { $sample: { size: 1 } }

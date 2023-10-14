@@ -5,7 +5,7 @@ import {Spacer} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import {Textarea} from "@nextui-org/react";
 
-export default function Home() {
+export default function UploadRecipe({ closeModal }) {
     const [name, setName] = useState("");
     const [recipe, setRecipe] = useState("");
     const [image, setImage] = useState("");
@@ -13,7 +13,7 @@ export default function Home() {
     const [prepTime, setprepTime] = useState("");
     const [totalTime, settotalTime] = useState("");
     const [isUploaded, setIsUploaded] = useState(false); // Initialize the state for displaying 'Feltöltve'
-    const [isSalad, setIsSalad] = useState(false);
+    const [isSalad, setisSalad] = useState(false);
 
     const handleSubmit = async () => {
         if (!name || !name || !image ||!prepTime || !steps || !totalTime ) {
@@ -37,11 +37,13 @@ export default function Home() {
         setSteps("");
         setprepTime("")
         settotalTime("")
+        setisSalad(false);
         
 
 
-        // Set the state to show 'Feltöltve'
+        // Set the state to show 'Uploaded'
         setIsUploaded(true);
+        closeModal();
     };
    
   
@@ -68,7 +70,6 @@ export default function Home() {
     </div>
     <Spacer y={4} />
   
-
     <div className="">
       <Textarea type="text"  value={recipe} label="Ingredients" onChange={(e) => setRecipe(e.target.value)} required />
     </div>
@@ -94,7 +95,7 @@ export default function Home() {
             <input
               type="checkbox"
               checked={isSalad}
-              onChange={() => setIsSalad(!isSalad)}
+              onChange={() => setisSalad(!isSalad)}
             />
             <span className="slider"></span>
           </label>
@@ -109,6 +110,7 @@ export default function Home() {
             <Button color="primary" onClick={handleSubmit}>
                     Send recipe
             </Button>
+            <Spacer y={4} />
                        
             {isUploaded && (
                 <div>

@@ -1,11 +1,12 @@
 import clientPromise from "../lib/mongodb";
 import React, { Fragment, useState } from "react";
 import styles from "./styles.module.css"; // Import the CSS module
-import {Card, CardHeader, CardBody, CardFooter, Divider, Link, Image} from "@nextui-org/react";
-import {Checkbox} from "@nextui-org/react";
-import {Button} from "@nextui-org/react";
+import {Card, CardHeader, CardBody, CardFooter, Divider, Image} from "@nextui-org/react";
 import {Chip} from "@nextui-org/react";
 import {Spacer} from "@nextui-org/react";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Link} from "@nextui-org/react";
+import UploadRecipe from "./recipesUP.js";
+
 
 
 const CustomCheckbox = ({ children }) => {
@@ -28,6 +29,15 @@ const CustomCheckbox = ({ children }) => {
 };
 
 export default function Poems({ recipes }) {
+  const {isOpen, onOpen, onClose} = useDisclosure();
+  const [backdrop, setBackdrop] = React.useState('opaque')
+  const backdrops = ["opaque", "blur", "transparent"];
+
+  const handleOpen = (backdrop) => {
+    setBackdrop(backdrop)
+    onOpen();
+  }
+
   const addCheckboxes = (str) =>
     str.split('\n').map((ingredient, index) => (
       <Fragment key={index}>
@@ -38,9 +48,20 @@ export default function Poems({ recipes }) {
     
 
         return (
-
-          
           <div className="">
+
+{backdrops.map((b) => (
+    <>
+      <Modal backdrop={backdrop} isOpen={isOpen} onOpenChange={onClose} placement="top-center">
+        <ModalContent>
+          <UploadRecipe closeModal={onClose} />
+        </ModalContent>
+      </Modal>
+    </>
+))}
+
+
+
 
 <Spacer y={4} />
   
@@ -58,16 +79,21 @@ export default function Poems({ recipes }) {
         content: "drop-shadow shadow-black text-white",
       }}>Less than 40 minutes</Chip>
                     
+
+                    <a href="/recipes_salad">
                     <Chip variant="shadow"
       classNames={{
         base: "bg-gradient-to-br from-green-500 to-yellow-500 border-small border-white/50 shadow-pink-500/30",
         content: "drop-shadow shadow-black text-white",
-      }}>Salad</Chip>
+      }}>Salad</Chip></a>
 
-<a href="/recipesUP"> <Chip color="default">Upload</Chip> </a>
+<a href="#" onClick={onOpen}>
+  <Chip color="default">Upload</Chip>
+</a>
                     </div> 
           <div >
            <div>
+            
           {recipes.map((recipe) => (
             
               <lu key={recipe._id}>
