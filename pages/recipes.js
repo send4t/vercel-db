@@ -10,6 +10,7 @@ import {Switch} from "@nextui-org/react";
 import {MoonIcon} from "./MoonIcon";
 import {SunIcon} from "./SunIcon";
 import { MdEdit } from 'react-icons/md';
+import { useTheme } from 'next-themes';
 
 
 const CustomCheckbox = ({ children }) => {
@@ -33,6 +34,11 @@ const CustomCheckbox = ({ children }) => {
 
 
 export default function Poems({ recipes }) {
+  const { theme, setTheme } = useTheme();
+  const toggleDarkMode = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+
   const {isOpen: isUploadOpen, onOpen: onUploadOpen, onClose: onUploadClose} = useDisclosure();
 const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclosure();
   
@@ -105,20 +111,8 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
         return (
           <div className="">
 
-      <Switch
-       defaultSelected
-        size="lg"
-        color="secondary"
-       thumbIcon={({ isSelected, className }) =>
-         isSelected ? (
-            <SunIcon className={className} />
-         ) : (
-          <MoonIcon className={className} />
-            )
-         }
-       >
-      Dark mode
-       </Switch>
+    
+
 
 {backdrops.map((b) => (
     <>
@@ -132,7 +126,7 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
 
 
 
-<Spacer y={4} />
+<Spacer y={6} />
   
                    <div className="flex-wrap justify-center items-bottom flex gap-4 ">
                    <a href="/recipes"> <Chip color="default">Give me random</Chip> </a>
@@ -159,6 +153,21 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
 <a href="#" onClick={onUploadOpen}>
   <Chip color="default">Upload</Chip>
 </a>
+<Switch
+        defaultSelected={theme === 'dark'}
+        size="lg"
+        color="secondary"
+        onChange={toggleDarkMode}
+        thumbIcon={({ isSelected, className }) =>
+          isSelected ? (
+            <SunIcon className={className} />
+          ) : (
+            <MoonIcon className={className} />
+          )
+        }
+      >
+        Dark mode
+      </Switch>
                     </div> 
           <div >
            <div>
@@ -193,7 +202,10 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
     </Card>
     </div>
 
-    <Modal backdrop={backdrop} isOpen={isEditOpen} onOpenChange={onEditClose}>
+
+    {backdrops.map((b) => (
+    <>
+      <Modal backdrop={backdrop} isOpen={isEditOpen} onOpenChange={onEditClose} placement="top-center">
         <ModalContent>
           <ModalHeader>Edit Recipe</ModalHeader>
           <ModalBody>                 
@@ -217,7 +229,8 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
           </ModalFooter>
         </ModalContent>
       </Modal>
-
+      </>))}
+ 
     <div className="flex space-x-10 flex-wrap justify-center items-top my-10 ">
     <Card className="max-w-[400px] ">
       
