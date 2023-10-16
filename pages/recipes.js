@@ -62,6 +62,7 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
     setRecipe(recipe.recipe);
     setprepTime(recipe.prepTime);
     settotalTime(recipe.totalTime);
+    setImage(recipe.Image);
     // Set other state variables as needed
     console.log(recipe)
     onEditOpen();
@@ -87,6 +88,7 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ id, name, recipe, prepTime, totalTime,image,steps,isSalad }),
+        
         });
     
         if (response.ok) {
@@ -95,7 +97,8 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
           console.error("Error editing recipe:", response.statusText);
         }
       } catch (error) {
-        console.error("Error editing recipe:", error);
+        console.error("Error editing recipe:", error)
+       
       }
     };
     
@@ -199,7 +202,7 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
         <ModalContent>
           <ModalHeader>Edit Recipe</ModalHeader>
           <ModalBody>                 
-                                
+                  <Input type="text" label="ID" defaultValue={recipe._id} onChange={(e) => setID(e.target.value)} />      
                   <Input type="text" label="Name" defaultValue={recipe.name} onChange={(e) => setName(e.target.value)} />
                   <Input type="text" label="Preptime (minutes)" defaultValue={recipe.prepTime} onChange={(e) => setprepTime(e.target.value)} />
                   <Input type="text" label="Totaltime (minutes)" defaultValue={recipe.totalTime} onChange={(e) => settotalTime(e.target.value)} />

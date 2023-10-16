@@ -56,7 +56,7 @@ export default function UploadRecipe({ closeModal }) {
 <div className="flex  flex-col items-center justify-center ">
         <div className="w-[400px]">
         <Spacer y={4} />
-<div className="text-center	font-bold">Recept feltöltése</div>
+<div className="text-center	font-bold">Upload recipe</div>
 <Spacer y={3} />
 <div className="">
       <Input type="text"  value={name} label="Recipe name" onChange={(e) => setName(e.target.value)} required />
