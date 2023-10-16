@@ -202,15 +202,11 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
     </Card>
     </div>
 
-
-    {backdrops.map((b) => (
-    <>
-      <Modal backdrop={backdrop} isOpen={isEditOpen} onOpenChange={onEditClose} placement="top-center">
+    <Modal backdrop={backdrop} isOpen={isEditOpen} onOpenChange={onEditClose}>
         <ModalContent>
           <ModalHeader>Edit Recipe</ModalHeader>
           <ModalBody>                 
-                  Name:
-                  <Input type="text" label="ID" defaultValue={recipe._id} onChange={(e) => setID(e.target.value)} />
+                                
                   <Input type="text" label="Name" defaultValue={recipe.name} onChange={(e) => setName(e.target.value)} />
                   <Input type="text" label="Preptime (minutes)" defaultValue={recipe.prepTime} onChange={(e) => setprepTime(e.target.value)} />
                   <Input type="text" label="Totaltime (minutes)" defaultValue={recipe.totalTime} onChange={(e) => settotalTime(e.target.value)} />
@@ -229,8 +225,7 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
           </ModalFooter>
         </ModalContent>
       </Modal>
-      </>))}
- 
+
     <div className="flex space-x-10 flex-wrap justify-center items-top my-10 ">
     <Card className="max-w-[400px] ">
       
