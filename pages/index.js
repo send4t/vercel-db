@@ -1,54 +1,30 @@
-import React from 'react'
+import React from 'react';
+import Head from 'next/head';
+import clientPromise from '../lib/mongodb';
 
-import Head from 'next/head'
-import clientPromise from '../lib/mongodb'
-import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
-
-
-
-type ConnectionStatus = {
-  isConnected: boolean
-}
-
-export const getServerSideProps: GetServerSideProps<
-  ConnectionStatus
-> = async () => {
+export const getServerSideProps = async () => {
   try {
-    await clientPromise
-    // `await clientPromise` will use the default database passed in the MONGODB_URI
-    // However you can use another database (e.g. myDatabase) by replacing the `await clientPromise` with the following code:
-    //
-    // `const client = await clientPromise`
-    // `const db = client.db("myDatabase")`
-    //
-    // Then you can execute queries against your database like so:
-    // db.find({}) or any of the MongoDB Node Driver commands
-
+    await clientPromise;
     return {
       props: { isConnected: true },
-    }
+    };
   } catch (e) {
-    console.error(e)
+    console.error(e);
     return {
       props: { isConnected: false },
-    }
+    };
   }
-}
+};
 
-export default function Home({
-  isConnected,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Home({ isConnected }) {
   return (
     <div className="container">
-
       <Head>
         <title>Portfolio</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-    
-      
         <h1 className="title">
           What can we build together?
         </h1>
@@ -58,7 +34,6 @@ export default function Home({
         ) : (
           <h2 className="subtitle">
             Ajaj valami zökkenő van. MongoDB feladta<code>README.md</code>{' '}
-            
           </h2>
         )}
 
@@ -93,7 +68,7 @@ export default function Home({
           >
             <h3>... &rarr;</h3>
             <p>
-            Még tanulom mi lesz itt..
+              Még tanulom mi lesz itt..
             </p>
           </a>
         </div>
