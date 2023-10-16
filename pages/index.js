@@ -26,16 +26,10 @@ export default function Home({ isConnected }) {
 
       <main>
         <h1 className="title">
-          What can we build together?
+          What can I build for you?
         </h1>
 
-        {isConnected ? (
-          <h2 className="subtitle">This site is using MongoDB</h2>
-        ) : (
-          <h2 className="subtitle">
-            Ajaj valami zökkenő van. MongoDB feladta<code>README.md</code>{' '}
-          </h2>
-        )}
+       
 
         <p className="description">
           Check my projects
@@ -53,22 +47,22 @@ export default function Home({ isConnected }) {
           </a>
 
           <a
-            href=""
+            href="https://disperseappexo.vercel.app"
             className="card"
           >
-            <h3>.. &rarr;</h3>
-            <p></p>
+            <h3>Disperse App &rarr;</h3>
+            <p>Distribute SAMA and ERC20 tokens</p>
           </a>
 
           <a
-            href=""
+            href="https://teremtoero.eu"
             target="_blank"
             rel="noopener noreferrer"
             className="card"
           >
-            <h3>... &rarr;</h3>
+            <h3>Therapist consultancy &rarr;</h3>
             <p>
-              Még tanulom mi lesz itt..
+              Wordpress consultancy site with webshop
             </p>
           </a>
         </div>

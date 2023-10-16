@@ -25,7 +25,7 @@ const CustomCheckbox = ({ children }) => {
   );
 };
 
-export default function Poems({ recipes }) {
+export default function Poems({ recipes, rawRecipes }) {
   const addCheckboxes = (str) =>
     str.split('\n').map((ingredient, index) => (
       <Fragment key={index}>
@@ -40,6 +40,7 @@ export default function Poems({ recipes }) {
           
           <div className="">
             <Spacer y={4} />
+            <pre>{rawRecipes}</pre>
 
 
   
@@ -139,13 +140,9 @@ export default function Poems({ recipes }) {
             }
           }
         },
-        {
-          $match: {
-            prepTimeInt: { $lt: 30 }
-          }
-        },
-        { $sample: { size: 1 } }
+        { $limit: 5 }
       ];
+      
   
       const recipes = await db
         .collection("rec")
@@ -153,7 +150,7 @@ export default function Poems({ recipes }) {
         .toArray();
   
       return {
-        props: { recipes: JSON.parse(JSON.stringify(recipes)) },
+        props: { recipes: JSON.parse(JSON.stringify(recipes)), rawRecipes: JSON.stringify(recipes) },
       };
     } catch (e) {
       console.error(e);
