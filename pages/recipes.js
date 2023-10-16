@@ -7,8 +7,7 @@ import {Spacer} from "@nextui-org/react";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Link,Textarea} from "@nextui-org/react";
 import UploadRecipe from "./recipesUP.js";
 import {Switch} from "@nextui-org/react";
-import {MoonIcon} from "./MoonIcon";
-import {SunIcon} from "./SunIcon";
+
 import { MdEdit } from 'react-icons/md';
 import { useTheme } from 'next-themes';
 
@@ -160,9 +159,9 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
         onChange={toggleDarkMode}
         thumbIcon={({ isSelected, className }) =>
           isSelected ? (
-            <SunIcon className={className} />
+           null
           ) : (
-            <MoonIcon className={className} />
+           null
           )
         }
       >
