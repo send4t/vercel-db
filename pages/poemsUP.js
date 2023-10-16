@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styles from "./styles.module.css"; // Import the CSS module
 import {Input} from "@nextui-org/react";
 import {Spacer} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";

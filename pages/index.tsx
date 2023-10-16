@@ -42,7 +42,7 @@ export default function Home({
     <div className="container">
 
       <Head>
-        <title>Valami izgi</title>
+        <title>Portfolio</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -50,11 +50,11 @@ export default function Home({
     
       
         <h1 className="title">
-          Te jártál már itt?
+          What can we build together?
         </h1>
 
         {isConnected ? (
-          <h2 className="subtitle">MongoDB biztosítja az infót</h2>
+          <h2 className="subtitle">This site is using MongoDB</h2>
         ) : (
           <h2 className="subtitle">
             Ajaj valami zökkenő van. MongoDB feladta<code>README.md</code>{' '}
@@ -63,18 +63,18 @@ export default function Home({
         )}
 
         <p className="description">
-          Nézd  meg valamelyik projektem
+          Check my projects
         </p>
 
         <div className="grid">
           <a href="/poems" className="card">
-            <h3>Versek &rarr;</h3>
-            <p>Kérj egy verset magadnak!</p>
+            <h3>Poems &rarr;</h3>
+            <p>Request a poem for yourself</p>
           </a>
 
           <a href="/recipes" className="card">
-            <h3>Receptek &rarr;</h3>
-            <p>Kedvenc receptjeink</p>
+            <h3>Recipes &rarr;</h3>
+            <p>Our favorite recipes</p>
           </a>
 
           <a
@@ -82,7 +82,7 @@ export default function Home({
             className="card"
           >
             <h3>.. &rarr;</h3>
-            <p>Még tanulom mi lesz itt..</p>
+            <p></p>
           </a>
 
           <a

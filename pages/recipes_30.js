@@ -1,6 +1,5 @@
 import clientPromise from "../lib/mongodb";
 import React, { Fragment, useState } from "react";
-import styles from "./styles.module.css"; // Import the CSS module
 import {Card, CardHeader, CardBody, CardFooter, Divider, Link, Image} from "@nextui-org/react";
 import {Checkbox} from "@nextui-org/react";
 import {Chip} from "@nextui-org/react";

@@ -6,6 +6,7 @@ import {Button} from "@nextui-org/react";
 import {Textarea} from "@nextui-org/react";
 
 export default function UploadRecipe({ closeModal }) {
+
     const [name, setName] = useState("");
     const [recipe, setRecipe] = useState("");
     const [image, setImage] = useState("");

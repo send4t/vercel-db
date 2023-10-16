@@ -27,7 +27,7 @@ export default async function handler(req, res) {
      
     };
 
-    const result = await coll.insertOne(newRecipe); // Insert the new poem
+    const result = await coll.insertOne(newRecipe); // Insert the new recipe
 
     res.status(201).json({ insertedId: result.insertedId });
   } catch (error) {
