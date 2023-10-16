@@ -4,7 +4,7 @@ import {Spacer} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import {Textarea} from "@nextui-org/react";
 
-export default function Home() {
+export default function UploadPoem() {
     const [author, setAuthor] = useState("");
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");

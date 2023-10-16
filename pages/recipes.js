@@ -1,13 +1,7 @@
 import clientPromise from "../lib/mongodb";
 import React, { Fragment, useState } from "react";
-import styles from "./styles.module.css"; // Import the CSS module
-import {Card, CardHeader, CardBody, CardFooter, Divider, Image} from "@nextui-org/react";
-import {Chip} from "@nextui-org/react";
-import {Spacer} from "@nextui-org/react";
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Link,Textarea} from "@nextui-org/react";
+import {Switch,Card,Chip,Spacer, CardHeader, CardBody, CardFooter, Divider, Image,Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Textarea} from "@nextui-org/react";
 import UploadRecipe from "./recipesUP.js";
-import {Switch} from "@nextui-org/react";
-
 import { MdEdit } from 'react-icons/md';
 import { useTheme } from 'next-themes';
 

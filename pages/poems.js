@@ -1,10 +1,46 @@
 import clientPromise from "../lib/mongodb";
-import React, { Fragment } from "react";
-import styles from "./styles.module.css"; // Import the CSS module
-
+import React, { Fragment, useState } from "react";
+import {Switch,Card,Chip,Spacer, CardHeader, CardBody, CardFooter, Divider, Image,Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Textarea} from "@nextui-org/react";
+import UploadPoem from "./poemsUP.js";
+import { MdEdit } from 'react-icons/md';
+import { useTheme } from 'next-themes';
 
 
 export default function Poems({ poems }) {
+
+    const { theme, setTheme } = useTheme();
+    const toggleDarkMode = () => {
+      setTheme(theme === 'dark' ? 'light' : 'dark');
+    };
+
+
+    
+  const {isOpen: isUploadOpen, onOpen: onUploadOpen, onClose: onUploadClose} = useDisclosure();
+  const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclosure();
+
+  const [backdrop, setBackdrop] = React.useState('opaque')
+  const backdrops = ["opaque", "blur", "transparent"];
+
+
+  const handleSave = async () => {  
+    try {
+      const response = await fetch("/api/editPoem", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ author, title, poem, tag }),
+      });
+  
+      if (response.ok) {
+        onClose();
+      } else {
+        console.error("Error editing recipe:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error editing recipe:", error);
+    }
+  };
 
 
     const addLineBreak = (str) =>
@@ -16,16 +52,32 @@ export default function Poems({ poems }) {
     ));
 
     return (
-        <div className={`${styles.poems} ${styles.poemsPage}`}>
-             <div  className={styles.button}>
-              <a href="/poemsUP">  
-            <button >Vers feltöltés</button>
-            </a>
+        <div >
+
+{backdrops.map((b) => (
+    <>
+      <Modal backdrop={backdrop} isOpen={isUploadOpen} onOpenChange={onUploadClose} placement="top-center">
+        <ModalContent>
+          <UploadPoem closeModal={onUploadClose} />
+        </ModalContent>
+      </Modal>
+    </>
+))}
+
+<Spacer y={6} />
+
+                <div className="flex-wrap justify-center items-bottom flex gap-4 ">
+                   <a href="/"> <Chip color="default">Give me random</Chip> </a>
+                
+                <a href="#" onClick={onUploadOpen}>
+                    <Chip color="default">Upload</Chip>
+                </a>
             </div>
+           
 
             <h1 >Egy random vers az ünnepnapokra</h1>
             
-            <ul className={styles.poems}>
+            <ul >
                 {poems.map((poem) => (
                     <lu>
                         <h2>{poem.author}</h2>
@@ -36,7 +88,7 @@ export default function Poems({ poems }) {
             </ul>
             
                   
-            <div  className={styles.button}>
+            <div  >
               <a href="/poems">  
             <button >Véletlen vers</button>
             </a>

@@ -1,12 +1,9 @@
 import clientPromise from "../lib/mongodb";
 import React, { Fragment, useState } from "react";
-import styles from "./styles.module.css"; // Import the CSS module
-import {Card, CardHeader, CardBody, CardFooter, Divider, Link, Image} from "@nextui-org/react";
-import {Checkbox} from "@nextui-org/react";
-import {Chip} from "@nextui-org/react";
-import {Spacer} from "@nextui-org/react";
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input} from "@nextui-org/react";
+import {Switch,Card,Chip,Spacer, CardHeader, CardBody, CardFooter, Divider, Image,Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Textarea} from "@nextui-org/react";
 import UploadRecipe from "./recipesUP.js";
+import { MdEdit } from 'react-icons/md';
+import { useTheme } from 'next-themes';
 
 
 const CustomCheckbox = ({ children }) => {
@@ -28,7 +25,49 @@ const CustomCheckbox = ({ children }) => {
   );
 };
 
+
 export default function Poems({ recipes }) {
+  const { theme, setTheme } = useTheme();
+  const toggleDarkMode = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+
+  const {isOpen: isUploadOpen, onOpen: onUploadOpen, onClose: onUploadClose} = useDisclosure();
+const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclosure();
+  
+  const [backdrop, setBackdrop] = React.useState('opaque')
+  const backdrops = ["opaque", "blur", "transparent"];
+
+  // Define your state variables and corresponding state functions
+  const [id, setID] = useState("");
+  const [name, setName] = useState("");
+  const [recipe, setRecipe] = useState("");
+  const [image, setImage] = useState("");
+  const [steps, setSteps] = useState("");
+  const [prepTime, setprepTime] = useState("");
+  const [totalTime, settotalTime] = useState("");
+  const [isUploaded, setIsUploaded] = useState(false);
+  const [isSalad, setisSalad] = useState(false);
+
+  const handleOpen = (backdrop) => {
+
+    setBackdrop(backdrop)
+    onOpen();
+  }
+
+   // Function to open the modal with current recipe data
+   const handleEdit = (recipe) => {
+    setID(recipe._id); // Assuming recipe has an "_id" property
+    setName(recipe.name);
+    setRecipe(recipe.recipe);
+    setprepTime(recipe.prepTime);
+    settotalTime(recipe.totalTime);
+    // Set other state variables as needed
+    console.log(recipe)
+    onEditOpen();
+  };
+  
+
   const addCheckboxes = (str) =>
     str.split('\n').map((ingredient, index) => (
       <Fragment key={index}>
@@ -36,26 +75,43 @@ export default function Poems({ recipes }) {
         <br />
       </Fragment>
     ));
+    
+  
 
-    const {isOpen, onOpen, onClose} = useDisclosure();
-  const [backdrop, setBackdrop] = React.useState('opaque')
-  const backdrops = ["opaque", "blur", "transparent"];
 
-  const handleOpen = (backdrop) => {
-    setBackdrop(backdrop)
-    onOpen();
-  }
+    const handleSave = async () => {  
+      try {
+        const response = await fetch("/api/edit-Recipe", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id, name, recipe, prepTime, totalTime,image,steps,isSalad }),
+        });
+    
+        if (response.ok) {
+          onClose();
+        } else {
+          console.error("Error editing recipe:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error editing recipe:", error);
+      }
+    };
     
 
-        return (
 
-            <div className="">
+        return (
+          <div className="">
+
+    
+
 
 {backdrops.map((b) => (
     <>
-      <Modal backdrop={backdrop} isOpen={isOpen} onOpenChange={onClose} placement="top-center">
+      <Modal backdrop={backdrop} isOpen={isUploadOpen} onOpenChange={onUploadClose} placement="top-center">
         <ModalContent>
-          <UploadRecipe closeModal={onClose} />
+          <UploadRecipe closeModal={onUploadClose} />
         </ModalContent>
       </Modal>
     </>
@@ -63,7 +119,7 @@ export default function Poems({ recipes }) {
 
 
 
-<Spacer y={4} />
+<Spacer y={6} />
   
                    <div className="flex-wrap justify-center items-bottom flex gap-4 ">
                    <a href="/recipes"> <Chip color="default">Give me random</Chip> </a>
@@ -87,12 +143,28 @@ export default function Poems({ recipes }) {
         content: "drop-shadow shadow-black text-white",
       }}>Salad</Chip></a>
 
-<a href="#" onClick={onOpen}>
+<a href="#" onClick={onUploadOpen}>
   <Chip color="default">Upload</Chip>
 </a>
+<Switch
+        defaultSelected={theme === 'dark'}
+        size="lg"
+        color="secondary"
+        onChange={toggleDarkMode}
+        thumbIcon={({ isSelected, className }) =>
+          isSelected ? (
+           null
+          ) : (
+           null
+          )
+        }
+      >
+        Dark mode
+      </Switch>
                     </div> 
           <div >
            <div>
+            
           {recipes.map((recipe) => (
             
               <lu key={recipe._id}>
@@ -114,13 +186,39 @@ export default function Poems({ recipes }) {
           <p className="text-small text-default-500">{recipe.prepTime}</p>
           <p className="text-small text-default-500 mt-5">Total time</p>
           <p className="text-small text-default-500">{recipe.totalTime}</p>
-         
+          <MdEdit
+            className="absolute bottom-2 right-2 cursor-pointer"
+            onClick={() => handleEdit(recipe)}
+          />
         </div>
-      
       </CardHeader>
     </Card>
     </div>
-    
+
+    <Modal backdrop={backdrop} isOpen={isEditOpen} onOpenChange={onEditClose}>
+        <ModalContent>
+          <ModalHeader>Edit Recipe</ModalHeader>
+          <ModalBody>                 
+                                
+                  <Input type="text" label="Name" defaultValue={recipe.name} onChange={(e) => setName(e.target.value)} />
+                  <Input type="text" label="Preptime (minutes)" defaultValue={recipe.prepTime} onChange={(e) => setprepTime(e.target.value)} />
+                  <Input type="text" label="Totaltime (minutes)" defaultValue={recipe.totalTime} onChange={(e) => settotalTime(e.target.value)} />
+                  <Input type="text" label="Image" defaultValue={recipe.image} onChange={(e) => setImage(e.target.value)} />
+                  <Textarea type="text" label="Ingredients" defaultValue={recipe.recipe} onChange={(e) => setRecipe(e.target.value)} />
+                  <Textarea type="text" label="Steps" defaultValue={recipe.steps} onChange={(e) => setSteps(e.target.value)} />
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onEditClose}>Cancel</Button>
+            <Button
+              color="secondary"
+              onClick={handleSave}
+            >
+              Save
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
     <div className="flex space-x-10 flex-wrap justify-center items-top my-10 ">
     <Card className="max-w-[400px] ">
       
@@ -155,6 +253,7 @@ export default function Poems({ recipes }) {
           
       );
   }
+ 
  
 
   export async function getServerSideProps() {
