@@ -65,7 +65,7 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
    const handleEdit = (recipe) => {
     setID(recipe._id); // Assuming recipe has an "_id" property
     setName(recipe.name);
-    setSteps(recipe._id)
+    setSteps(recipe.steps)
     setRecipe(recipe.recipe);
     setprepTime(recipe.prepTime);
     settotalTime(recipe.totalTime);
