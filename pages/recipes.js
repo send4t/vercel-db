@@ -8,6 +8,12 @@ import { useTheme } from 'next-themes';
 
 const CustomCheckbox = ({ children }) => {
   const [isChecked, setIsChecked] = useState(false);
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+ 
 
   const toggleCheckbox = () => {
     setIsChecked(!isChecked);
@@ -87,12 +93,12 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ id, name, recipe, prepTime, totalTime,image,steps,isSalad }),
+          body: JSON.stringify({ id, name, recipe, prepTime, totalTime, image, steps, isSalad }),
         
         });
     
         if (response.ok) {
-          onClose();
+          onEditClose();
         } else {
           console.error("Error editing recipe:", response.statusText);
         }
@@ -110,14 +116,14 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
     
 
 
-{backdrops.map((b) => (
-    <>
+{backdrops.map((b, index) => (
+    <Fragment key={index}>
       <Modal backdrop={backdrop} isOpen={isUploadOpen} onOpenChange={onUploadClose} placement="top-center">
         <ModalContent>
           <UploadRecipe closeModal={onUploadClose} />
         </ModalContent>
       </Modal>
-    </>
+    </Fragment>
 ))}
 
 
@@ -166,11 +172,12 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
       </Switch>
                     </div> 
           <div >
-           <div>
-            
           {recipes.map((recipe) => (
+           <div key={recipe._id}>
             
-              <lu key={recipe._id}>
+          
+            
+            
 
 <div className="flex justify-center items-center my-20">
           <Card className="max-w-[500px] flex justify-center items-center ">
@@ -198,7 +205,7 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
     </Card>
     </div>
 
-    <Modal backdrop={backdrop} isOpen={isEditOpen} onOpenChange={onEditClose}>
+    <Modal backdrop={backdrop} isOpen={isEditOpen} onOpenChange={onEditClose} placement="center">
         <ModalContent>
           <ModalHeader>Edit Recipe</ModalHeader>
           <ModalBody>                 
@@ -248,9 +255,9 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
 
 
 
-              </lu>
-              ))}
+            
               </div>  
+              ))}
           </div>
           </div>
           

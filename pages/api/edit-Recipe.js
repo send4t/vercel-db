@@ -1,11 +1,11 @@
-import { MongoClient } from 'mongodb';
-import { ObjectId } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
+
 const url = process.env.MONGODB_URI;
 const client = new MongoClient(url);
 
 export default async function handler(req, res) {
   if (req.method === "PUT") {
-    const { id, name, recipe, prepTime, totalTime, image,steps,isSalad  } = req.body;
+    const { id, name, recipe, prepTime, totalTime, image, steps, isSalad } = req.body;
 
     try {
       await client.connect();
@@ -23,14 +23,20 @@ export default async function handler(req, res) {
       if (prepTime !== undefined) updatedRecipe.prepTime = prepTime;
       if (totalTime !== undefined) updatedRecipe.totalTime = totalTime;
 
+      console.log("Updating recipe with ID:", id);
+      console.log("Update details:", updatedRecipe);
 
       const result = await coll.updateOne(
         { _id: new ObjectId(id) },
         { $set: updatedRecipe }
       );
 
+      console.log("Update result:", result);
+
       if (result.modifiedCount === 1) {
         res.status(200).json({ message: "Recipe updated successfully" });
+      } else if (result.matchedCount === 1) {
+        res.status(304).json({ message: "No modifications were made as data is identical." });
       } else {
         res.status(404).json({ message: "Recipe not found" });
       }
