@@ -1,7 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
 import clientPromise from '../lib/mongodb';
-import {Card, CardHeader, CardBody, CardFooter, Image, Button} from "@nextui-org/react";
+import {Card, CardHeader, CardBody, CardFooter, Image, Button,Spacer} from "@nextui-org/react";
+import { useRouter } from 'next/router';
 
 export const getServerSideProps = async () => {
   try {
@@ -18,17 +19,20 @@ export const getServerSideProps = async () => {
 };
 
 export default function Home({ isConnected }) {
-  return (
+  const router = useRouter();
+  return ( 
+    
     <div className=" ">
+      
       <Head>
         <title>Portfolio</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-
+     
 
       <main>
-
+      
      
       <div className="min-h-screen flex flex-col items-center justify-center">
   <Head>
@@ -45,38 +49,78 @@ export default function Home({ isConnected }) {
       <p className="mt-3 text-xl">
         Check my projects
       </p>
+      
+      
     </div>
     <div className="text-center">
             <p>Tamás Vonyigás</p>
             <p><a href="mailto:vonyitomi@gmail.com">vonyitomi@gmail.com</a></p>
+            <Spacer y={6} />
           </div>
         </div>
    
     <div className="w-full md:w-1/2 flex flex-wrap justify-center items-start gap-4 p-4">
-      <a href="/poems" className="p-4 border rounded-lg text-left hover:bg-gray-100">
-        <h3 className="text-2xl font-bold">Poems &rarr;</h3>
-        <p className="mt-2 text-lg">Request a poem for yourself</p>
-      </a>
-
-      <a href="/recipes" className="p-4 border rounded-lg text-left hover:bg-gray-100">
-        <h3 className="text-2xl font-bold">Recipes &rarr;</h3>
-        <p className="mt-2 text-lg">Our favorite recipes</p>
-      </a>
-
-      <a href="https://disperseappexo.vercel.app" className="p-4 border rounded-lg text-left hover:bg-gray-100">
-        <h3 className="text-2xl font-bold">Disperse App &rarr;</h3>
-        <p className="mt-2 text-lg">Distribute SAMA and ERC20 tokens</p>
-      </a>
-
-      <a href="https://teremtoero.eu" target="_blank" rel="noopener noreferrer" className="p-4 border rounded-lg text-left hover:bg-gray-100">
-        <h3 className="text-2xl font-bold">Therapist consultancy &rarr;</h3>
-        <p className="mt-2 text-lg">
-          Wordpress consultancy site with webshop
-        </p>
-      </a>
+        <div className="max-w-[900px] gap-2 grid grid-cols-12 grid-rows-2 px-8">
+    <Card className="col-span-12 sm:col-span-4 h-[300px]" isPressable onPress={() => router.push('/poems')} >
+      <CardHeader className="absolute z-10 bottom-1 flex-col !items-start">
+        <p className="text-tiny text-white/60 uppercase font-bold">Poems</p>
+        <h4 className="text-white font-medium text-large">Request a random poem</h4>
+      </CardHeader>
+      <Image
+      isZoomed
+        removeWrapper
+        alt="Card background"
+        className="z-0 w-full h-full object-cover"
+        src="/images/poems.jpg"
+      />
+    </Card>
+    <Card className="col-span-12 sm:col-span-4 h-[300px]" isPressable onPress={() => router.push('/recipes')}>
+      <CardHeader className="absolute z-10 bottom-1 flex-col !items-start">
+        <p className="text-tiny text-white/60 uppercase font-bold">Recipes</p>
+        <h4 className="text-white font-medium text-large">Our favorite recipes</h4>
+      </CardHeader>
+      <Image
+      isZoomed
+        removeWrapper
+        alt="Card background"
+        className="z-0 w-full h-full object-cover"
+        src="/images/recipes.jpg"
+      />
+    </Card>
+    <Card className="col-span-12 sm:col-span-4 h-[300px]" isPressable onPress={() => window.open('https://disperseappexo.vercel.app', '_blank')}>
+      <CardHeader className="absolute z-10 bottom-1 flex-col !items-start">
+        <p className="text-tiny text-white/60 uppercase font-bold">Disperse Dapp</p>
+        <h4 className="text-white font-medium text-large">Disperse SAMA tokens</h4>
+      </CardHeader>
+      <Image
+      isZoomed
+        removeWrapper
+        alt="Card background"
+        className="z-0 w-full h-full object-cover"
+        src="/images/chain.jpg"
+      />
+    </Card>
+    
+    <Card className="w-full h-[300px] col-span-12 sm:col-span-12 " isPressable onPress={() => window.open('http://www.teremtoero.eu', '_blank')}>
+      <CardHeader className="absolute z-10 bottom-1 flex-col items-start">
+        <p className="text-tiny text-black/60 uppercase font-bold">Therapist consultancy</p>
+        <h4 className="text-black/90 font-medium text-xl">Wordpress consultancy site with webshop</h4>
+      </CardHeader>
+      <Image
+       isZoomed
+        removeWrapper
+        alt="Relaxing app background"
+        className="z-0 w-full h-full object-cover"
+        src="/images/consultancy.jpg"
+      />
+    </Card>
+  
+   
+  </div>
+     
     </div>
   </main>
-</div>
+</div> 
 
       </main>
 

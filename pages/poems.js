@@ -1,6 +1,6 @@
 import clientPromise from "../lib/mongodb";
 import React, { Fragment, useState } from "react";
-import {Switch,Card,Chip,Spacer, CardHeader, CardBody, CardFooter, Divider, Image,Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Textarea} from "@nextui-org/react";
+import {Switch,Card,Chip,Spacer, CardHeader, CardBody, CardFooter, Divider, Image,Modal, ModalContent,Link, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Textarea} from "@nextui-org/react";
 import UploadPoem from "./poemsUP.js";
 import { MdEdit } from 'react-icons/md';
 import { useTheme } from 'next-themes';
@@ -77,13 +77,25 @@ export default function Poems({ poems }) {
             {poems.map((poem) => (
             <div className="flex justify-center items-center my-20">
             <Card className="max-w-[500px] flex justify-center items-center ">
+
+            <Card className="max-w-[400px]">
+      <CardHeader className="flex gap-3">
+         <div className="flex flex-col">
+          <p className="text-md">{poem.author}</p>
+        </div>
+      </CardHeader>
+      <Divider/>
+      <CardBody>
+        <p className="text-sm text-default-500">{poem.title}</p>
+      </CardBody>
+      
+      <CardFooter>
+      <p className="text-sm text-default-500">{addLineBreak(poem.content)}</p>
+      </CardFooter>
+    </Card>
     
   
-    <div key={poem.id} className="mb-5">
-      <p className="text-md">{poem.author}</p>
-      <p className="text-sm text-default-500">{poem.title}</p>
-      <p className="text-sm text-default-500">{addLineBreak(poem.content)}</p>
-    </div >
+   
 
     
     </Card>
