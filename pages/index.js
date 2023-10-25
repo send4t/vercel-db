@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import clientPromise from '../lib/mongodb';
+import {Card, CardHeader, CardBody, CardFooter, Image, Button} from "@nextui-org/react";
 
 export const getServerSideProps = async () => {
   try {
@@ -18,216 +19,72 @@ export const getServerSideProps = async () => {
 
 export default function Home({ isConnected }) {
   return (
-    <div className="container">
+    <div className=" ">
       <Head>
         <title>Portfolio</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+
+
       <main>
-        <h1 className="title">
-          What can I build for you?
-        </h1>
 
-       
+     
+      <div className="min-h-screen flex flex-col items-center justify-center">
+  <Head>
+    <title>Portfolio</title>
+    <link rel="icon" href="/favicon.ico" />
+  </Head>
 
-        <p className="description">
-          Check my projects
-        </p>
-
-        <div className="grid">
-          <a href="/poems" className="card">
-            <h3>Poems &rarr;</h3>
-            <p>Request a poem for yourself</p>
-          </a>
-
-          <a href="/recipes" className="card">
-            <h3>Recipes &rarr;</h3>
-            <p>Our favorite recipes</p>
-          </a>
-
-          <a
-            href="https://disperseappexo.vercel.app"
-            className="card"
-          >
-            <h3>Disperse App &rarr;</h3>
-            <p>Distribute SAMA and ERC20 tokens</p>
-          </a>
-
-          <a
-            href="https://teremtoero.eu"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="card"
-          >
-            <h3>Therapist consultancy &rarr;</h3>
-            <p>
-              Wordpress consultancy site with webshop
-            </p>
-          </a>
+  <main className="flex flex-col md:flex-row w-full justify-center items-stretch">
+        <div className="w-full md:w-1/2 flex flex-col justify-between p-4">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold">
+        What can I build for you?
+      </h1>
+      <p className="mt-3 text-xl">
+        Check my projects
+      </p>
+    </div>
+    <div className="text-center">
+            <p>Tamás Vonyigás</p>
+            <p><a href="mailto:vonyitomi@gmail.com">vonyitomi@gmail.com</a></p>
+          </div>
         </div>
+   
+    <div className="w-full md:w-1/2 flex flex-wrap justify-center items-start gap-4 p-4">
+      <a href="/poems" className="p-4 border rounded-lg text-left hover:bg-gray-100">
+        <h3 className="text-2xl font-bold">Poems &rarr;</h3>
+        <p className="mt-2 text-lg">Request a poem for yourself</p>
+      </a>
+
+      <a href="/recipes" className="p-4 border rounded-lg text-left hover:bg-gray-100">
+        <h3 className="text-2xl font-bold">Recipes &rarr;</h3>
+        <p className="mt-2 text-lg">Our favorite recipes</p>
+      </a>
+
+      <a href="https://disperseappexo.vercel.app" className="p-4 border rounded-lg text-left hover:bg-gray-100">
+        <h3 className="text-2xl font-bold">Disperse App &rarr;</h3>
+        <p className="mt-2 text-lg">Distribute SAMA and ERC20 tokens</p>
+      </a>
+
+      <a href="https://teremtoero.eu" target="_blank" rel="noopener noreferrer" className="p-4 border rounded-lg text-left hover:bg-gray-100">
+        <h3 className="text-2xl font-bold">Therapist consultancy &rarr;</h3>
+        <p className="mt-2 text-lg">
+          Wordpress consultancy site with webshop
+        </p>
+      </a>
+    </div>
+  </main>
+</div>
+
       </main>
 
       <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-        </a>
+        <p></p>
       </footer>
 
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer img {
-          margin-left: 0.5rem;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
-
-        .title,
-        .description {
-          text-align: center;
-        }
-
-        .subtitle {
-          font-size: 2rem;
-        }
-
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
-          margin-top: 3rem;
-        }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-
-        .logo {
-          height: 1em;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
+      
     </div>
   )
 }
