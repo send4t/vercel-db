@@ -67,7 +67,7 @@ export default function Poems({ poems }) {
 <Spacer y={6} />
 
                 <div className="flex-wrap justify-center items-bottom flex gap-4 ">
-                   <a href="/"> <Chip color="default">Give me random</Chip> </a>
+                   <a href="/poems"> <Chip color="default">Give me random</Chip> </a>
                 
                 <a href="#" onClick={onUploadOpen}>
                     <Chip color="default">Upload</Chip>
@@ -75,24 +75,24 @@ export default function Poems({ poems }) {
             </div>
            
 
-            <h1 >Egy random vers az ünnepnapokra</h1>
-            
-            <ul >
-                {poems.map((poem) => (
-                    <lu>
-                        <h2>{poem.author}</h2>
-                        <h3>{poem.title}</h3>
-                        <p>{addLineBreak(poem.content)}</p>
-                    </lu>
-                ))}
-            </ul>
-            
-                  
-            <div  >
-              <a href="/poems">  
-            <button >Véletlen vers</button>
-            </a>
-            </div>
+            <div className="flex justify-center items-center my-20">
+          <Card className="max-w-[500px] flex justify-center items-center ">
+      
+          <div className="max-w-[500px] flex justify-center items-center ">
+  {poems.map((poem) => (
+    <div key={poem.id} className="mb-5">
+      <p className="text-md">{poem.author}</p>
+      <p className="text-sm text-default-500">{poem.title}</p>
+      <p className="text-sm text-default-500">{addLineBreak(poem.content)}</p>
+    </div>
+  ))}
+  
+</div>
+
+      
+    </Card>
+    </div>
+
 
                 
            
