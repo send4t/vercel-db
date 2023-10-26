@@ -45,6 +45,3 @@ I've built a portfolio application that's connected with [MongoDB](https://www.m
 
 I've identified several challenges in this portfolio, which are documented under the 'Issues' section. Any help, feedback, or contributions to improve or fix these pain points is greatly appreciated.
 
----
-
-Feel free to customize further based on your preferences and additional information. The goal is to have a README that clearly communicates the purpose, functionalities, and tech stack of your projects to any potential viewer or contributor.
