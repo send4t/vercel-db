@@ -1,29 +1,50 @@
-## Portfolio app using MongoDB
+# Portfolio App with MongoDB Integration
 
-[MongoDB](https://www.mongodb.com/) is a general purpose, document-based, distributed database built for modern application developers and for the cloud era. 
+I've built a portfolio application that's connected with [MongoDB](https://www.mongodb.com/), a versatile document-based database ideal for the modern cloud era. This repository houses various projects that I've developed, showcasing my ability to work with databases, APIs, and modern UI libraries.
 
+## Technologies Used:
 
-## Help me fix issues
+- **NextUI**: For a modern, responsive user interface.
+- **NextJS**: A React framework for server-rendered applications.
+- **TailwindCSS**: A utility-first CSS framework for rapid UI development.
+- **MongoDB**: For database management and operations.
 
-I listed several painpoints under issues help and explanation is always appreciated.
+## Projects Overview:
 
-## What to expect
+### 1. Poems App
 
-I connected the portfolio into MongoDB and can do basic operation like read/upload/edit from and to the database with API calls. 
-I'm using NextUI, NextJS and TailwindCCS to build the UI you see.
+- Contains a collection of my favorite poems.
+- Provides the ability to tag each poem.
+- Features an option to fetch a random poem from the database.
 
-- Poems app
-    Contains randomly selected favorite poems. With the ability to tag each and get a random poem from the database.
+### 2. Recipes App
 
-- Recipes app
-    I use this webapp almost everyday to check for our favorite recipes with my girlfriend. I built it with having user experience in mind. You can see the steps and ingredients at all times on the same screen. And filter recipes based on how much time you have.
+- A daily-used web app to explore favorite recipes.
+- User-friendly interface showing steps and ingredients simultaneously.
+- Includes a filter to sort recipes based on available cooking time.
 
-- Disperse app
-    It's a project I built for my community when I ran Zealy campaigns marketing campaigns I often founds myself in tricky situations where I couldn't send tokens to all participants all at once. Forking the disperse app that was already built on Etherum and modified it to work on Moonsama network. Can use it to send tokens up to 200 addresses with a single transaction. Saved me at least 40+ hrs of manual work already.
+### 3. Disperse App
 
--Consultancy therapy Wordpress site with webshop
-    Freelance assigment of a Wordpress site using Elementor and a simple webshop. All contact forms and program sign up working. Webshop also working only bug left to solve is Elementor stopped supporting Facebook feed a while ago. So I'm using a different extension to scrape Facebook feed for current events. (needs to be manully scraped once in a while)
+- Originally forked from an Ethereum-based app, now modified for the Moonsama network.
+- Designed for community campaigns, allowing for token dispersion to up to 200 addresses in a single transaction.
+- A great tool that's already saved over 40 hours of manual work.
 
-- What I learned
--communication with MongoDB through APIs
--
+### 4. Consultancy Therapy WordPress Site
+
+- A freelance project built with Elementor.
+- Features a functional webshop.
+- Contains contact forms and program sign-ups.
+- **Note**: Currently using a third-party extension for Facebook feed scraping due to the discontinuation of support from Elementor.
+
+## Key Learnings:
+
+1. Effective communication with MongoDB through APIs.
+2. (You can continue listing other significant learnings here.)
+
+## Issues & Contributions:
+
+I've identified several challenges in this portfolio, which are documented under the 'Issues' section. Any help, feedback, or contributions to improve or fix these pain points is greatly appreciated.
+
+---
+
+Feel free to customize further based on your preferences and additional information. The goal is to have a README that clearly communicates the purpose, functionalities, and tech stack of your projects to any potential viewer or contributor.
