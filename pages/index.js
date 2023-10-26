@@ -42,7 +42,7 @@ export default function Home({ isConnected }) {
 
   <main className="flex flex-col md:flex-row w-full h-screen">
   <div className="w-full md:w-1/2 flex flex-col justify-between p-4">
-  <div className="text-left mb-4">
+  <div className="text-left">
     <h1 className="text-2xl font-bold">
       Tamás <br/> Vonyigás
     </h1>
@@ -59,7 +59,7 @@ export default function Home({ isConnected }) {
     </div>
   </div>
 
-  <div className="text-left mt-4">
+  <div className="text-left">
     <p>Email: <a href="mailto:vonyitomi@gmail.com" className="text-blue-500">vonyitomi@gmail.com</a></p>
   </div>
 </div>
@@ -119,7 +119,7 @@ export default function Home({ isConnected }) {
         <h4 className="text-black/90 font-large text-xl">Wordpress site with webshop</h4>
       </CardHeader>
       <Image
-      radius="none"
+       radius="none"
        isZoomed
         removeWrapper
         alt="Relaxing app background"
