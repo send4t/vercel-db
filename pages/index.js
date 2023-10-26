@@ -42,25 +42,27 @@ export default function Home({ isConnected }) {
 
   <main className="flex flex-col md:flex-row w-full h-screen">
   <div className="w-full md:w-1/2 flex flex-col justify-between p-4">
-    <div className="text-left">
-      <h1 className="text-4xl font-bold">
-        Tamás Vonyigás
+  <div className="text-left">
+    <h1 className="text-2xl font-bold">
+      Tamás <br/> Vonyigás
+    </h1>
+  </div>
+
+  <div className="flex-1 flex flex-col justify-center">
+    <div className="max-w-xl">
+      <h1 className="text-4xl font-bold font-display text-gray-100 md:text-5xl">
+        Welcome to My Portfolio
       </h1>
-    </div>
-    <div className="text-center flex-grow flex items-center">
-      <div>
-        <h2 className="text-3xl font-bold">
-          Welcome to My Portfolio
-        </h2>
-        <p className="mt-3 text-xl">
-          I am a developer with a passion for creating beautiful and functional web applications. Take a look around to see what I can do!
-        </p>
-      </div>
-    </div>
-    <div className="text-left">
-      <p>Email: <a href="mailto:vonyitomi@gmail.com" className="text-blue-500">vonyitomi@gmail.com</a></p>
+      <p className="text-xl mt-3">
+        I am a developer with a passion for creating beautiful and functional web applications. Take a look around to see what I can do!
+      </p>
     </div>
   </div>
+
+  <div className="text-left">
+    <p>Email: <a href="mailto:vonyitomi@gmail.com" className="text-blue-500">vonyitomi@gmail.com</a></p>
+  </div>
+</div>
    
         <div className="w-full md:w-1/2 p-0">
     <div className="flex flex-wrap h-full">
