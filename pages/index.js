@@ -62,12 +62,14 @@ export default function Home({ isConnected }) {
    
         <div className="w-full md:w-1/2 p-0">
     <div className="flex flex-wrap h-full">
+
       <Card className="w-1/2 h-1/2 " isPressable onPress={() => router.push('/poems')} radius="none">
       <CardHeader className="absolute z-10 bottom-1 flex-col !items-start">
-        <p className="text-tiny text-white/60 uppercase font-bold">Poems</p>
-        <h4 className="text-white font-medium text-large">Request a random poem</h4>
+        <p className="text-large text-white/60 uppercase font-bold">Poems</p>
+        <h4 className="text-white font-medium text-large">Request random poem</h4>
       </CardHeader>
       <Image
+      isFooterBlurred
       radius="none"
       isZoomed
         removeWrapper
@@ -75,10 +77,12 @@ export default function Home({ isConnected }) {
         className="z-0 w-full h-full object-cover"
         src="/images/poems.jpg"
       />
+
     </Card>
+    
     <Card className="w-1/2 h-1/2" isPressable onPress={() => router.push('/recipes')}  radius="none">
       <CardHeader className="absolute z-10 bottom-1 flex-col !items-start">
-        <p className="text-tiny text-white/60 uppercase font-bold">Recipes</p>
+        <p className="text-large text-white/60 uppercase font-bold">Recipes</p>
         <h4 className="text-white font-medium text-large">Our favorite recipes</h4>
       </CardHeader>
       <Image
@@ -92,7 +96,7 @@ export default function Home({ isConnected }) {
     </Card>
     <Card className="w-1/2 h-1/2" isPressable onPress={() => window.open('https://disperseappexo.vercel.app', '_blank')}  radius="none">
       <CardHeader className="absolute z-10 bottom-1 flex-col !items-start">
-        <p className="text-tiny text-white/60 uppercase font-bold">Disperse Dapp</p>
+        <p className="text-large text-white/60 uppercase font-bold">Disperse Dapp</p>
         <h4 className="text-white font-medium text-large">Disperse SAMA tokens</h4>
       </CardHeader>
       <Image
@@ -106,12 +110,12 @@ export default function Home({ isConnected }) {
     </Card>
     
     <Card className="w-1/2 h-1/2" isPressable onPress={() => window.open('http://www.teremtoero.eu', '_blank')}  radius="none">
-      <CardHeader className="absolute z-10 bottom-1 flex-col items-start">
-        <p className="text-tiny text-black/60 uppercase font-bold">Therapist consultancy</p>
-        <h4 className="text-black/90 font-medium text-xl">Wordpress consultancy site with webshop</h4>
+      <CardHeader className="absolute z-10 bottom-1 flex-col !items-start">
+        <p className="text-large text-black/60 uppercase font-bold">Therapist consultancy</p>
+        <h4 className="text-black/90 font-large text-xl">Wordpress site with webshop</h4>
       </CardHeader>
       <Image
-      radius="none"
+      
        isZoomed
         removeWrapper
         alt="Relaxing app background"
