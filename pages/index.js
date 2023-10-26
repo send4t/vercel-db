@@ -42,23 +42,25 @@ export default function Home({ isConnected }) {
 
   <main className="flex flex-col md:flex-row w-full h-screen">
   <div className="w-full md:w-1/2 flex flex-col justify-between p-4">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold">
-        What can I build for you?
+    <div className="text-left">
+      <h1 className="text-4xl font-bold">
+        Tamás Vonyigás
       </h1>
-      <p className="mt-3 text-xl">
-        Check my projects
-      </p>
-      
-      
     </div>
-    <Spacer y={6} />
-    <div className="text-center">
-            <p>Tamás Vonyigás</p>
-            <p><a href="mailto:vonyitomi@gmail.com">vonyitomi@gmail.com</a></p>
-            <Spacer y={6} />
-          </div>
-        </div>
+    <div className="text-center flex-grow flex items-center">
+      <div>
+        <h2 className="text-3xl font-bold">
+          Welcome to My Portfolio
+        </h2>
+        <p className="mt-3 text-xl">
+          I am a developer with a passion for creating beautiful and functional web applications. Take a look around to see what I can do!
+        </p>
+      </div>
+    </div>
+    <div className="text-left">
+      <p>Email: <a href="mailto:vonyitomi@gmail.com" className="text-blue-500">vonyitomi@gmail.com</a></p>
+    </div>
+  </div>
    
         <div className="w-full md:w-1/2 p-0">
     <div className="flex flex-wrap h-full">
