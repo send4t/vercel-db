@@ -39,7 +39,19 @@ I've built a portfolio application that's connected with [MongoDB](https://www.m
 ## Key Learnings:
 
 1. Effective communication with MongoDB through APIs.
-2. (You can continue listing other significant learnings here.)
+2. Database Operations: Mastered the CRUD operations using MongoDB, gaining a deep understanding of how to interact with a NoSQL database programmatically.
+3. Full-Stack Development: Developed proficiency in full-stack development by connecting the frontend built with NextJS and TailwindCSS to the MongoDB database through APIs.
+4. User Experience Design: Enhanced my skills in creating user-centric designs, particularly evident in the Recipes App, where the user can view both steps and ingredients simultaneously for a seamless cooking experience.
+5. Smart Contract Interaction: Gained practical experience in blockchain development and smart contract interactions while modifying the Disperse App to work on the Moonsama network.
+6. Performance Optimization: Learned how to optimize the performance of web applications, ensuring faster load times and smoother interactions, even when dealing with large amounts of data.
+7. Problem-Solving: Developed strong problem-solving skills, especially in debugging and finding workarounds for issues like the Facebook feed scraping in the WordPress site.
+8. API Integration: Enhanced my skills in integrating and working with various APIs, ensuring smooth data flow between the frontend, backend, and external services.
+9. Responsive Design: Gained expertise in creating responsive designs using TailwindCSS, ensuring that all the applications in the portfolio provide an excellent user experience across various devices.
+10. Security Practices: Learned about best practices for securing web applications and user data, particularly when interacting with databases and executing transactions on the blockchain.
+11. Version Control: Improved my skills in using version control systems like Git, which is essential for maintaining code integrity and collaboration.
+12. Continuous Learning: The diverse range of projects in the portfolio fostered a culture of continuous learning, as each project required different skills and technologies.
+13. Time Management: Developed effective time management skills, learning how to prioritize tasks and manage workloads efficiently across multiple projects.
+14. Communication Skills: Enhanced my ability to communicate complex technical details effectively, both within the code through comments, and externally through documentation and collaborative tools.
 
 ## Issues & Contributions:
 
