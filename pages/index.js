@@ -119,7 +119,7 @@ export default function Home({ isConnected }) {
         <h4 className="text-black/90 font-large text-xl">Wordpress site with webshop</h4>
       </CardHeader>
       <Image
-      
+      radius="none"
        isZoomed
         removeWrapper
         alt="Relaxing app background"
