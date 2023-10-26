@@ -55,11 +55,7 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
   const [isUploaded, setIsUploaded] = useState(false);
   const [isSalad, setisSalad] = useState(false);
 
-  const handleOpen = (backdrop) => {
 
-    setBackdrop(backdrop)
-    onOpen();
-  }
 
    // Function to open the modal with current recipe data
    const handleEdit = (recipe) => {
@@ -71,7 +67,6 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
     settotalTime(recipe.totalTime);
     setImage(recipe.Image);
     // Set other state variables as needed
-    console.log(recipe)
     onEditOpen();
   };
   
@@ -129,6 +124,8 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
 
 
 
+
+
 <Spacer y={6} />
   
                    <div className="flex-wrap justify-center items-bottom flex gap-4 ">
@@ -175,9 +172,7 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
           <div >
           {recipes.map((recipe) => (
            <div key={recipe._id}>
-            
-          
-            
+                    
             
 
 <div className="flex justify-center items-center my-20">
@@ -206,30 +201,7 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
     </Card>
     </div>
 
-    <Modal backdrop={backdrop} isOpen={isEditOpen} onOpenChange={onEditClose} placement="center">
-        <ModalContent>
-          <ModalHeader>Edit Recipe</ModalHeader>
-          <ModalBody>                 
-                  <Input type="text" label="ID" defaultValue={recipe._id} onChange={(e) => setID(e.target.value)} />      
-                  <Input type="text" label="Name" defaultValue={recipe.name} onChange={(e) => setName(e.target.value)} />
-                  <Input type="text" label="Preptime (minutes)" defaultValue={recipe.prepTime} onChange={(e) => setprepTime(e.target.value)} />
-                  <Input type="text" label="Totaltime (minutes)" defaultValue={recipe.totalTime} onChange={(e) => settotalTime(e.target.value)} />
-                  <Input type="text" label="Image" defaultValue={recipe.image} onChange={(e) => setImage(e.target.value)} />
-                  <Textarea type="text" label="Ingredients" defaultValue={recipe.recipe} onChange={(e) => setRecipe(e.target.value)} />
-                  <Textarea type="text" label="Steps" defaultValue={recipe.steps} onChange={(e) => setSteps(e.target.value)} />
-          </ModalBody>
-          <ModalFooter>
-            <Button onClick={onEditClose}>Cancel</Button>
-            <Button
-              color="secondary"
-              onClick={handleSave}
-            >
-              Save
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-
+    
     <div className="flex space-x-10 flex-wrap justify-center items-top my-10 ">
     <Card className="max-w-[400px] ">
       
@@ -255,7 +227,34 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
     </div>
 
 
+   
+     
+<Modal   style={{ top: '5%', position: 'fixed' }}   backdrop={backdrop} isOpen={isEditOpen} onOpenChange={onEditClose} placement="top-center">
+        <ModalContent>
+          <ModalHeader>Edit Recipe</ModalHeader>
+          <ModalBody>                 
+                  <Input type="text" label="ID" defaultValue={recipe._id} onChange={(e) => setID(e.target.value)} />      
+                  <Input type="text" label="Name" defaultValue={recipe.name} onChange={(e) => setName(e.target.value)} />
+                  <Input type="text" label="Preptime (minutes)" defaultValue={recipe.prepTime} onChange={(e) => setprepTime(e.target.value)} />
+                  <Input type="text" label="Totaltime (minutes)" defaultValue={recipe.totalTime} onChange={(e) => settotalTime(e.target.value)} />
+                  <Input type="text" label="Image" defaultValue={recipe.image} onChange={(e) => setImage(e.target.value)} />
+                  <Textarea type="text" label="Ingredients" defaultValue={recipe.recipe} onChange={(e) => setRecipe(e.target.value)} />
+                  <Textarea type="text" label="Steps" defaultValue={recipe.steps} onChange={(e) => setSteps(e.target.value)} />
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onEditClose}>Cancel</Button>
+            <Button
+              color="secondary"
+              onClick={handleSave}
+            >
+              Save
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+      
 
+     
             
               </div>  
               ))}
@@ -264,6 +263,7 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
           
       );
   }
+  
  
   
 

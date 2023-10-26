@@ -67,7 +67,7 @@ export default function UploadPoem() {
         <Input
           type="text"
           value={tag}
-          label="Tag"
+          label="Tag (press , to add tag)"
           onChange={(e) => setTag(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === ",") {
