@@ -50,7 +50,7 @@ export default function Home({ isConnected }) {
 
   <div className="flex-1 flex flex-col justify-center">
     <div className="max-w-xl">
-      <h1 className="text-4xl font-bold font-display text-gray-100 md:text-5xl">
+      <h1 className="text-4xl font-bold font-display text-gray-900 dark:text-gray-100 md:text-5xl">
         Welcome to My Portfolio
       </h1>
       <p className="text-xl mt-3">
@@ -70,7 +70,7 @@ export default function Home({ isConnected }) {
       <Card className="w-1/2 h-1/2 " isPressable onPress={() => router.push('/poems')} radius="none">
       <CardHeader className="absolute z-10 bottom-1 flex-col !items-start">
         <p className="text-large text-white/60 uppercase font-bold">Poems</p>
-        <h4 className="text-white font-medium text-large">Request random poem</h4>
+        <h4 className="text-white font-medium text-large">Request a poem</h4>
       </CardHeader>
       <Image
       isFooterBlurred
@@ -100,8 +100,8 @@ export default function Home({ isConnected }) {
     </Card>
     <Card className="w-1/2 h-1/2" isPressable onPress={() => window.open('https://disperseappexo.vercel.app', '_blank')}  radius="none">
       <CardHeader className="absolute z-10 bottom-1 flex-col !items-start">
-        <p className="text-large text-white/60 uppercase font-bold">Disperse Dapp</p>
-        <h4 className="text-white font-medium text-large">Disperse SAMA tokens</h4>
+        <p className="text-large text-white/60 uppercase font-bold">WEB3 dAPP</p>
+        <h4 className="text-white font-medium text-large">Disperse tokens</h4>
       </CardHeader>
       <Image
       radius="none"
@@ -115,8 +115,8 @@ export default function Home({ isConnected }) {
     
     <Card className="w-1/2 h-1/2" isPressable onPress={() => window.open('http://www.teremtoero.eu', '_blank')}  radius="none">
       <CardHeader className="absolute z-10 bottom-1 flex-col !items-start">
-        <p className="text-large text-black/60 uppercase font-bold">Therapist consultancy</p>
-        <h4 className="text-black/90 font-large text-xl">Wordpress site with webshop</h4>
+        <p className="text-large text-black/60 uppercase font-bold">Therapist</p>
+        <h4 className="text-black/90 font-medium text-large">WP site + webshop</h4>
       </CardHeader>
       <Image
        radius="none"
