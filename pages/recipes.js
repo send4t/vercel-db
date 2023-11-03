@@ -32,7 +32,7 @@ const CustomCheckbox = ({ children }) => {
 };
 
 
-export default function Poems({ recipes }) {
+export default function Recipes({ recipes }) {
   const { theme, setTheme } = useTheme();
   const toggleDarkMode = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
@@ -107,8 +107,103 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
 
 
         return (
-          <div className="">
 
+          <div className="">
+            
+
+               <div className="flex-wrap ml-4 md:ml-40 justify-left items-bottom flex gap-4 py-4 mt-10">
+
+                    <a href="/recipes"> <Chip color="default">Give me random</Chip> </a>
+                   <a href="/recipes_30"><Chip variant="shadow"
+      classNames={{
+        base: "bg-gradient-to-br from-yellow-500 to-red-500 border-small border-white/50 shadow-pink-500/30",
+        content: "drop-shadow shadow-black text-white",
+      }}>Less than 30 minutes</Chip> </a> 
+                    
+                    <Chip variant="shadow"
+      classNames={{
+        base: "bg-gradient-to-br from-blue-500 to-pink-500 border-small border-white/50 shadow-pink-500/30",
+        content: "drop-shadow shadow-black text-white",
+      }}>Dessert</Chip>
+                    
+
+                    <a href="/recipes_salad">
+                    <Chip variant="shadow"
+      classNames={{
+        base: "bg-gradient-to-br from-green-500 to-yellow-500 border-small border-white/50 shadow-pink-500/30",
+        content: "drop-shadow shadow-black text-white",
+      }}>Salad</Chip></a>
+
+                      </div>
+
+{recipes.map((recipe) => (
+<div className="flex flex-col ml-4 md:ml-40 items-center pt-5 ">
+  <div className="flex justify-start items-start w-full mb-10">
+    <div className="flex min-w-400 h-48 bg-gray-300 flex items-center justify-center ">
+          
+    <img src={recipe.image} className="w-full h-full object-contain" alt="Recipe" />
+        
+    </div>
+    
+    <div className="flex flex-col ml-5 space-y-2">
+    <div className="flex items-center">
+    <p className="text-lg mb-2 font-bold text-tealCyan">{recipe.name}</p>
+    
+    <MdEdit className="ml-2 cursor-pointer" onClick={() => handleEdit(recipe)}/>
+</div>
+    <div>
+        <p className="text-small  mb-1">Prep time</p>
+        <p className="text-small text-lightCyan">{recipe.prepTime}</p>
+        
+    </div>
+    <div className="mt-2">
+        <p className="text-small  mb-1">Total time</p>
+        <p className="text-small text-lightCyan">{recipe.totalTime}</p>
+    </div>
+</div>
+  </div>
+  <div className="flex justify-start w-full">
+    <div className="flex flex-col w-1/3 max-w-sm space-y-4 pr-2">
+    <p className="text-lg text-tealCyan font-bold">Ingredients:</p>
+      <Divider/>
+      {addCheckboxes(recipe.recipe)}
+      
+    </div>
+    <div className="flex flex-col w-2/3 max-w-md space-y-4 pl-2">
+    <p className="text-lg  text-tealCyan font-bold">Steps:</p>
+      <Divider/>
+      {addCheckboxes(recipe.steps)}
+    </div>
+  </div>
+</div>
+
+))}
+
+<div className="flex-wrap justify-center items-bottom flex gap-4 py-8 ">
+              
+              <Button color="success" onClick={onUploadOpen}>
+         Upload my own
+      </Button>
+  
+  
+  <Switch
+          defaultSelected={theme === 'dark'}
+          size="lg"
+          color="secondary"
+          onChange={toggleDarkMode}
+          thumbIcon={({ isSelected, className }) =>
+            isSelected ? (
+             null
+            ) : (
+             null
+            )
+          }
+        >
+          Dark mode
+        </Switch>
+        
+                      </div > 
+  
     
 
 
@@ -123,113 +218,14 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
 ))}
 
 
-
-
-
-<Spacer y={6} />
   
-                   <div className="flex-wrap justify-center items-bottom flex gap-4 ">
-                   <a href="/recipes"> <Chip color="default">Give me random</Chip> </a>
-                   <a href="/recipes_30"><Chip variant="shadow"
-      classNames={{
-        base: "bg-gradient-to-br from-yellow-500 to-red-500 border-small border-white/50 shadow-pink-500/30",
-        content: "drop-shadow shadow-black text-white",
-      }}>Less than 30 minutes</Chip> </a> 
-                    
-                    <Chip variant="shadow"
-      classNames={{
-        base: "bg-gradient-to-br from-blue-500 to-pink-500 border-small border-white/50 shadow-pink-500/30",
-        content: "drop-shadow shadow-black text-white",
-      }}>Less than 40 minutes</Chip>
-                    
-
-                    <a href="/recipes_salad">
-                    <Chip variant="shadow"
-      classNames={{
-        base: "bg-gradient-to-br from-green-500 to-yellow-500 border-small border-white/50 shadow-pink-500/30",
-        content: "drop-shadow shadow-black text-white",
-      }}>Salad</Chip></a>
-
-<a href="#" onClick={onUploadOpen}>
-  <Chip color="default">Upload</Chip>
-</a>
-<Switch
-        defaultSelected={theme === 'dark'}
-        size="lg"
-        color="secondary"
-        onChange={toggleDarkMode}
-        thumbIcon={({ isSelected, className }) =>
-          isSelected ? (
-           null
-          ) : (
-           null
-          )
-        }
-      >
-        Dark mode
-      </Switch>
-                    </div> 
+                  
           <div >
           {recipes.map((recipe) => (
            <div key={recipe._id}>
-                    
-            
-
-<div className="flex justify-center items-center my-20">
-          <Card className="max-w-[500px] flex justify-center items-center ">
-      <CardHeader className="flex gap-3">
-        <Image
-        isZoomed
-          alt="nextui logo"
-          height={240}
-          radius="sm"
-          src={recipe.image}
-          width={240}
-        />
-        <div className="flex flex-col">
-          <p className="text-md mb-5">{recipe.name}</p>
-          <p className="text-small text-default-500">Prep time</p>
-          <p className="text-small text-default-500">{recipe.prepTime}</p>
-          <p className="text-small text-default-500 mt-5">Total time</p>
-          <p className="text-small text-default-500">{recipe.totalTime}</p>
-          <MdEdit
-            className="absolute bottom-2 right-2 cursor-pointer"
-            onClick={() => handleEdit(recipe)}
-          />
-        </div>
-      </CardHeader>
-    </Card>
-    </div>
-
-    
-    <div className="flex space-x-10 flex-wrap justify-center items-top my-10 ">
-    <Card className="max-w-[400px] ">
-      
-      <CardBody>
-      <p className="text-lg mb-3">Ingredients:</p>
-      <Divider/>
-      {addCheckboxes(recipe.recipe)}
-      </CardBody>
-      <Divider/>
+                     
      
-    </Card>
-    <Card className="max-w-[400px] ">
-      
-      <CardBody>
-      <p className="text-lg mb-3">Steps:</p>
-      <Divider/>
-      {addCheckboxes(recipe.steps)}
-      </CardBody>
-      <Divider/>
-     
-    </Card>
-
-    </div>
-
-
-   
-     
-<Modal   style={{ top: '5%', position: 'fixed' }}   backdrop={backdrop} isOpen={isEditOpen} onOpenChange={onEditClose} placement="top-center">
+      <Modal   style={{ top: '5%', position: 'fixed' }}   backdrop={backdrop} isOpen={isEditOpen} onOpenChange={onEditClose} placement="top-center">
         <ModalContent>
           <ModalHeader>Edit Recipe</ModalHeader>
           <ModalBody>                 
@@ -253,7 +249,6 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
         </ModalContent>
       </Modal>
       
-
      
             
               </div>  

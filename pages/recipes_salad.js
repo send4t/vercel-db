@@ -5,9 +5,14 @@ import UploadRecipe from "./recipesUP.js";
 import { MdEdit } from 'react-icons/md';
 import { useTheme } from 'next-themes';
 
-
 const CustomCheckbox = ({ children }) => {
   const [isChecked, setIsChecked] = useState(false);
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+ 
 
   const toggleCheckbox = () => {
     setIsChecked(!isChecked);
@@ -26,7 +31,7 @@ const CustomCheckbox = ({ children }) => {
 };
 
 
-export default function Poems({ recipes }) {
+export default function Recipes({ recipes }) {
   const { theme, setTheme } = useTheme();
   const toggleDarkMode = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
@@ -49,21 +54,18 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
   const [isUploaded, setIsUploaded] = useState(false);
   const [isSalad, setisSalad] = useState(false);
 
-  const handleOpen = (backdrop) => {
 
-    setBackdrop(backdrop)
-    onOpen();
-  }
 
    // Function to open the modal with current recipe data
    const handleEdit = (recipe) => {
     setID(recipe._id); // Assuming recipe has an "_id" property
     setName(recipe.name);
+    setSteps(recipe.steps)
     setRecipe(recipe.recipe);
     setprepTime(recipe.prepTime);
     settotalTime(recipe.totalTime);
+    setImage(recipe.Image);
     // Set other state variables as needed
-    console.log(recipe)
     onEditOpen();
   };
   
@@ -86,43 +88,31 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ id, name, recipe, prepTime, totalTime,image,steps,isSalad }),
+          body: JSON.stringify({ id, name, recipe, prepTime, totalTime, image, steps, isSalad }),
+        
         });
     
         if (response.ok) {
-          onClose();
+          onEditClose();
         } else {
           console.error("Error editing recipe:", response.statusText);
         }
       } catch (error) {
-        console.error("Error editing recipe:", error);
+        console.error("Error editing recipe:", error)
+       
       }
     };
     
 
 
         return (
+
           <div className="">
+            
 
-    
+               <div className="flex-wrap ml-4 md:ml-40 justify-left items-bottom flex gap-4 py-4 mt-10">
 
-
-{backdrops.map((b) => (
-    <>
-      <Modal backdrop={backdrop} isOpen={isUploadOpen} onOpenChange={onUploadClose} placement="top-center">
-        <ModalContent>
-          <UploadRecipe closeModal={onUploadClose} />
-        </ModalContent>
-      </Modal>
-    </>
-))}
-
-
-
-<Spacer y={6} />
-  
-                   <div className="flex-wrap justify-center items-bottom flex gap-4 ">
-                   <a href="/recipes"> <Chip color="default">Give me random</Chip> </a>
+                    <a href="/recipes"> <Chip color="default">Give me random</Chip> </a>
                    <a href="/recipes_30"><Chip variant="shadow"
       classNames={{
         base: "bg-gradient-to-br from-yellow-500 to-red-500 border-small border-white/50 shadow-pink-500/30",
@@ -133,7 +123,7 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
       classNames={{
         base: "bg-gradient-to-br from-blue-500 to-pink-500 border-small border-white/50 shadow-pink-500/30",
         content: "drop-shadow shadow-black text-white",
-      }}>Less than 40 minutes</Chip>
+      }}>Dessert</Chip>
                     
 
                     <a href="/recipes_salad">
@@ -143,63 +133,102 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
         content: "drop-shadow shadow-black text-white",
       }}>Salad</Chip></a>
 
-<a href="#" onClick={onUploadOpen}>
-  <Chip color="default">Upload</Chip>
-</a>
-<Switch
-        defaultSelected={theme === 'dark'}
-        size="lg"
-        color="secondary"
-        onChange={toggleDarkMode}
-        thumbIcon={({ isSelected, className }) =>
-          isSelected ? (
-           null
-          ) : (
-           null
-          )
-        }
-      >
-        Dark mode
-      </Switch>
-                    </div> 
-          <div >
-           <div>
-            
-          {recipes.map((recipe) => (
-            
-              <lu key={recipe._id}>
+                      </div>
 
-<div className="flex justify-center items-center my-20">
-          <Card className="max-w-[500px] flex justify-center items-center ">
-      <CardHeader className="flex gap-3">
-        <Image
-        isZoomed
-          alt="nextui logo"
-          height={240}
-          radius="sm"
-          src={recipe.image}
-          width={240}
-        />
-        <div className="flex flex-col">
-          <p className="text-md mb-5">{recipe.name}</p>
-          <p className="text-small text-default-500">Prep time</p>
-          <p className="text-small text-default-500">{recipe.prepTime}</p>
-          <p className="text-small text-default-500 mt-5">Total time</p>
-          <p className="text-small text-default-500">{recipe.totalTime}</p>
-          <MdEdit
-            className="absolute bottom-2 right-2 cursor-pointer"
-            onClick={() => handleEdit(recipe)}
-          />
-        </div>
-      </CardHeader>
-    </Card>
+{recipes.map((recipe) => (
+<div className="flex flex-col ml-4 md:ml-40 items-center pt-5 ">
+  <div className="flex justify-start items-start w-full mb-10">
+    <div className="flex min-w-400 h-48 bg-gray-300 flex items-center justify-center ">
+          
+    <img src={recipe.image} className="w-full h-full object-contain" alt="Recipe" />
+        
     </div>
+    
+    <div className="flex flex-col ml-5 space-y-2">
+    <div className="flex items-center">
+    <p className="text-lg mb-2 font-bold text-tealCyan">{recipe.name}</p>
+    
+    <MdEdit className="ml-2 cursor-pointer" onClick={() => handleEdit(recipe)}/>
+</div>
+    <div>
+        <p className="text-small  mb-1">Prep time</p>
+        <p className="text-small text-lightCyan">{recipe.prepTime}</p>
+        
+    </div>
+    <div className="mt-2">
+        <p className="text-small  mb-1">Total time</p>
+        <p className="text-small text-lightCyan">{recipe.totalTime}</p>
+    </div>
+</div>
+  </div>
+  <div className="flex justify-start w-full">
+    <div className="flex flex-col w-1/3 max-w-sm space-y-4 pr-2">
+    <p className="text-lg text-tealCyan font-bold">Ingredients:</p>
+      <Divider/>
+      {addCheckboxes(recipe.recipe)}
+      
+    </div>
+    <div className="flex flex-col w-2/3 max-w-md space-y-4 pl-2">
+    <p className="text-lg  text-tealCyan font-bold">Steps:</p>
+      <Divider/>
+      {addCheckboxes(recipe.steps)}
+    </div>
+  </div>
+</div>
 
-    <Modal backdrop={backdrop} isOpen={isEditOpen} onOpenChange={onEditClose}>
+))}
+
+<div className="flex-wrap justify-center items-bottom flex gap-4 py-8 ">
+              
+              <Button color="success" onClick={onUploadOpen}>
+         Upload my own
+      </Button>
+  
+  
+  <Switch
+          defaultSelected={theme === 'dark'}
+          size="lg"
+          color="secondary"
+          onChange={toggleDarkMode}
+          thumbIcon={({ isSelected, className }) =>
+            isSelected ? (
+             null
+            ) : (
+             null
+            )
+          }
+        >
+          Dark mode
+        </Switch>
+        
+                      </div > 
+  
+    
+
+
+{backdrops.map((b, index) => (
+    <Fragment key={index}>
+      <Modal backdrop={backdrop} isOpen={isUploadOpen} onOpenChange={onUploadClose} placement="top-center">
+        <ModalContent>
+          <UploadRecipe closeModal={onUploadClose} />
+        </ModalContent>
+      </Modal>
+    </Fragment>
+))}
+
+
+  
+                  
+          <div >
+          {recipes.map((recipe) => (
+           <div key={recipe._id}>
+                     
+     
+      <Modal   style={{ top: '5%', position: 'fixed' }}   backdrop={backdrop} isOpen={isEditOpen} onOpenChange={onEditClose} placement="top-center">
         <ModalContent>
           <ModalHeader>Edit Recipe</ModalHeader>
           <ModalBody>                 
-                                
+                  <Input type="text" label="ID" defaultValue={recipe._id} onChange={(e) => setID(e.target.value)} />      
                   <Input type="text" label="Name" defaultValue={recipe.name} onChange={(e) => setName(e.target.value)} />
                   <Input type="text" label="Preptime (minutes)" defaultValue={recipe.prepTime} onChange={(e) => setprepTime(e.target.value)} />
                   <Input type="text" label="Totaltime (minutes)" defaultValue={recipe.totalTime} onChange={(e) => settotalTime(e.target.value)} />
@@ -218,42 +247,17 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
           </ModalFooter>
         </ModalContent>
       </Modal>
-
-    <div className="flex space-x-10 flex-wrap justify-center items-top my-10 ">
-    <Card className="max-w-[400px] ">
       
-      <CardBody>
-      <p className="text-lg mb-3">Ingredients:</p>
-      <Divider/>
-      {addCheckboxes(recipe.recipe)}
-      </CardBody>
-      <Divider/>
      
-    </Card>
-    <Card className="max-w-[400px] ">
-      
-      <CardBody>
-      <p className="text-lg mb-3">Steps:</p>
-      <Divider/>
-      {addCheckboxes(recipe.steps)}
-      </CardBody>
-      <Divider/>
-     
-    </Card>
-
-    </div>
-
-
-
-              </lu>
-              ))}
+            
               </div>  
+              ))}
           </div>
           </div>
           
       );
   }
- 
+  
  
 
   export async function getServerSideProps() {
