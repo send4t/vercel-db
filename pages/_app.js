@@ -1,16 +1,14 @@
-import {NextUIProvider} from '@nextui-org/react'
+import { NextUIProvider } from '@nextui-org/react';
 import '../styles/global.css';
-import {ThemeProvider as NextThemesProvider} from "next-themes";
-
-
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <NextUIProvider>
-      <NextThemesProvider attribute="class" defaultTheme="dark">
+    <NextThemesProvider enableSystem={false} defaultTheme="dark" attribute="class">
+      <NextUIProvider>
         <Component {...pageProps} />
-      </NextThemesProvider>
-    </NextUIProvider>
+      </NextUIProvider>
+    </NextThemesProvider>
   )
 }
 

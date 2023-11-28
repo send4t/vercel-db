@@ -1,9 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
 import clientPromise from '../lib/mongodb';
-import {Card, CardHeader, CardBody, CardFooter, Image, Button,Spacer} from "@nextui-org/react";
+import {Card, CardHeader, CardBody, CardFooter, Image, Button,Switch} from "@nextui-org/react";
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { useTheme } from 'next-themes';
 
 
 export const getServerSideProps = async () => {
@@ -21,6 +22,11 @@ export const getServerSideProps = async () => {
 };
 
 export default function Home({ isConnected }) {
+  const { theme, setTheme } = useTheme();
+  const toggleDarkMode = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+
   const router = useRouter();
  
   const [isHovered, setIsHovered] = useState(false);
@@ -91,14 +97,31 @@ export default function Home({ isConnected }) {
   <main className="flex flex-col md:flex-row w-full h-screen">
   <div className="w-full md:w-1/2 flex flex-col justify-between p-4">
   
-    <div className="text-left">
+    <div className="flex justify-between items-center">
+    
       <h1 className="text-2xl font-bold">Tamás<br/> Vonyigás</h1>
+
+      <Switch
+          defaultSelected={theme === 'dark'}
+          size="lg"
+          color="secondary"
+          onChange={toggleDarkMode}
+          thumbIcon={({ isSelected, className }) =>
+            isSelected ? (
+             null
+            ) : (
+             null
+            )
+          }
+        >
+          Dark mode
+        </Switch>
     </div>
 
     
     <div className="flex-1 flex items-center justify-center">
       <div className="text-left max-w-xl">
-        <h1 className="text-4xl font-bold font-display text-gray-900 dark:text-gray-100 md:text-5xl">
+        <h1 className="text-4xl font-bold font-display dark:text-gray-600  md:text-5xl">
           Welcome to My Portfolio
         </h1>
         <p className="text-xl mt-3">
