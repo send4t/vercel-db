@@ -1,10 +1,13 @@
 import React from 'react';
 import Head from 'next/head';
 import clientPromise from '../lib/mongodb';
-import {Card, CardHeader, CardBody, CardFooter, Image, Button,Switch} from "@nextui-org/react";
+import {Card, CardHeader, VisuallyHidden, useSwitch, Image, Button,Switch} from "@nextui-org/react";
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTheme } from 'next-themes';
+import {MoonIcon} from "/styles/MoonIcon";
+import {SunIcon} from "/styles/SunIcon";
+
 
 
 export const getServerSideProps = async () => {
@@ -21,12 +24,33 @@ export const getServerSideProps = async () => {
   }
 };
 
-export default function Home({ isConnected }) {
+
+const ThemeSwitch = () => {
   const { theme, setTheme } = useTheme();
+
+  const isSelected = theme === 'dark';
+
+  const handleToggle = () => {
+    setTheme(isSelected ? 'light' : 'dark');
+  };
+
+  return (
+    <div onClick={handleToggle} className="cursor-pointer flex items-center">
+      {isSelected ? <SunIcon /> : <MoonIcon />}
+      <span className="ml-2">Dark mode</span>
+    </div>
+  );
+};
+
+export default function Home({ isConnected }) {
+const { theme, setTheme } = useTheme();
   const toggleDarkMode = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
+
+
+  
   const router = useRouter();
  
   const [isHovered, setIsHovered] = useState(false);
@@ -97,25 +121,9 @@ export default function Home({ isConnected }) {
   <main className="flex flex-col md:flex-row w-full h-screen">
   <div className="w-full md:w-1/2 flex flex-col justify-between p-4">
   
-    <div className="flex justify-between items-center">
-    
+    <div className="text-left">
+   
       <h1 className="text-2xl font-bold">Tamás<br/> Vonyigás</h1>
-
-      <Switch
-          defaultSelected={theme === 'dark'}
-          size="lg"
-          color="secondary"
-          onChange={toggleDarkMode}
-          thumbIcon={({ isSelected, className }) =>
-            isSelected ? (
-             null
-            ) : (
-             null
-            )
-          }
-        >
-          Dark mode
-        </Switch>
     </div>
 
     
@@ -132,8 +140,10 @@ export default function Home({ isConnected }) {
 
     
     
-    <div className="text-left">
+    <div className="flex justify-between items-center">
       <p>Email: <a href="mailto:vonyitomi@gmail.com" className="text-blue-500">vonyitomi@gmail.com</a></p>
+      
+      <ThemeSwitch/>
     </div>
   </div>
         <div className="w-full md:w-1/2 p-0">
