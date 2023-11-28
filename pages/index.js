@@ -43,11 +43,6 @@ const ThemeSwitch = () => {
 };
 
 export default function Home({ isConnected }) {
-const { theme, setTheme } = useTheme();
-  const toggleDarkMode = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  };
-
 
 
   
@@ -87,6 +82,7 @@ const { theme, setTheme } = useTheme();
           removeWrapper
           alt="Card background"
           className={`z-0 w-full h-full object-cover ${isHovered ? '' : 'grayscale'}`}
+          style={{ filter: isHovered ? 'none' : 'grayscale(100%) brightness(40%)' }}
           src={src}
         />
       </Card>
