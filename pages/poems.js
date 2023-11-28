@@ -6,6 +6,7 @@ import { MdEdit } from 'react-icons/md';
 import { useTheme } from 'next-themes';
 
 
+
 export default function Poems({ poems }) {
 
     const { theme, setTheme } = useTheme();
@@ -51,8 +52,13 @@ export default function Poems({ poems }) {
         </Fragment>
     ));
 
+
+  
+    
+
     return (
         <div >
+
 
 {backdrops.map((b) => (
     
@@ -101,9 +107,13 @@ export default function Poems({ poems }) {
     ))}
 
 
-                
-           
-        </div>
+<div className="flex-wrap justify-center items-bottom flex gap-4 ">
+<a href="#" onClick={onUploadOpen}>
+                    <Chip color="default">Upload</Chip>
+                </a>
+                </div>
+           </div>
+        
     );
 }
 
