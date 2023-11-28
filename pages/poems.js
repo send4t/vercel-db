@@ -29,7 +29,7 @@ export default function Poems({ poems }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ author, title, poem, tag }),
+        body: JSON.stringify({ author, title, poem, tag,tags }),
       });
   
       if (response.ok) {
@@ -69,9 +69,7 @@ export default function Poems({ poems }) {
                 <div className="flex-wrap justify-center items-bottom flex gap-4 ">
                    <a href="/poems"> <Chip color="default">Give me random</Chip> </a>
                 
-                <a href="#" onClick={onUploadOpen}>
-                    <Chip color="default">Upload</Chip>
-                </a>
+               
             </div>
            
             {poems.map((poem) => (

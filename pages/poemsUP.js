@@ -32,7 +32,7 @@ export default function UploadPoem() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ author, title, content, tags }),
+      body: JSON.stringify({ author, title, content, tags,tag }),
     });
 
     // Handle the response from the API call here if necessary
