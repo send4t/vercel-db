@@ -1,13 +1,13 @@
 import clientPromise from "../lib/mongodb";
 import React, { Fragment, useState } from "react";
-import {Switch,Card,Chip,Spacer, CardHeader, CardBody, CardFooter, Divider, Image,Modal, ModalContent,Link, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Textarea} from "@nextui-org/react";
+import {Switch,Card,Chip,Spacer, CardHeader, CardBody, CardFooter, Divider, Image,Modal, ModalContent,Link, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Autocomplete, AutocompleteItem} from "@nextui-org/react";
 import UploadPoem from "./poemsUP.js";
 import { MdEdit } from 'react-icons/md';
 import { useTheme } from 'next-themes';
 
 
 
-export default function Poems({ poems }) {
+export default function Poems({ poems,tags }) {
 
     const { theme, setTheme } = useTheme();
     const toggleDarkMode = () => {
@@ -52,7 +52,7 @@ export default function Poems({ poems }) {
         </Fragment>
     ));
 
-
+    const autocompleteTags = tags.map(tag => ({ label: tag, value: tag }));
   
     
 
@@ -75,6 +75,18 @@ export default function Poems({ poems }) {
                 <div className="flex-wrap justify-center items-bottom flex gap-4 ">
                    <a href="/poems"> <Chip color="default">Give me random</Chip> </a>
                 
+                   <Autocomplete
+      defaultItems={tags}
+      label="Select a Tag"
+      
+      className="max-w-xs"
+    >
+      {tags.map((tag) => (
+        <AutocompleteItem key={tag} value={tag}>
+          {tag}
+        </AutocompleteItem>
+      ))}
+    </Autocomplete>
                
             </div>
            
@@ -107,6 +119,7 @@ export default function Poems({ poems }) {
     ))}
 
 
+
 <div className="flex-wrap justify-center items-bottom flex gap-4 ">
 <a href="#" onClick={onUploadOpen}>
                     <Chip color="default">Upload</Chip>
@@ -118,22 +131,36 @@ export default function Poems({ poems }) {
 }
 
 export async function getServerSideProps() {
-    try {
-        const client = await clientPromise;
-        const db = client.db("poems");
+  try {
+      const client = await clientPromise;
+      const db = client.db("poems");
 
-    
-        const poems = await db
-            .collection("poe")
-            .aggregate(
-                [ { $sample: { size: 1 } } ]
-             )
-            .toArray();
+      // Existing code to fetch poems
+      const poems = await db
+          .collection("poe")
+          .aggregate([ { $sample: { size: 1 } } ])
+          .toArray();
 
-        return {
-            props: { poems: JSON.parse(JSON.stringify(poems)) },
-        };
-    } catch (e) {
-        console.error(e);
-    }
+      // New code to fetch unique tags
+      const tags = await db
+          .collection("poe")
+          .aggregate([
+              { $unwind: "$tags" }, // Unwind the tags array
+              { $group: { _id: "$tags" } }, // Group by tags
+              { $project: { _id: 0, tag: "$_id" } } // Project the tags
+          ])
+          .toArray();
+
+      // Extracting the tags from the aggregation result
+      const uniqueTags = tags.map(tagDoc => tagDoc.tag);
+
+      return {
+          props: { poems: JSON.parse(JSON.stringify(poems)), tags: uniqueTags },
+      };
+  } catch (e) {
+      console.error(e);
+      return { props: { poems: [], tags: [] } };
+  }
 }
+
+
