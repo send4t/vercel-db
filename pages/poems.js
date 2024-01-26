@@ -4,6 +4,8 @@ import {Switch,Card,Chip,Spacer, CardHeader, CardBody, CardFooter, Divider, Imag
 import UploadPoem from "./poemsUP.js";
 import { MdEdit } from 'react-icons/md';
 import { useTheme } from 'next-themes';
+import { useRouter } from 'next/router';
+
 
 
 
@@ -13,6 +15,18 @@ export default function Poems({ poems,tags }) {
     const toggleDarkMode = () => {
       setTheme(theme === 'dark' ? 'light' : 'dark');
     };
+
+
+
+// chatgpt
+    const router = useRouter();
+
+const handleTagSelect = (selectedTag) => {
+  // Make sure selectedTag is a string before pushing to the router
+  const tagValue = selectedTag && typeof selectedTag === 'object' ? selectedTag.value : selectedTag;
+  router.push(`/poems?tag=${tagValue}`);
+};
+
 
 
     
@@ -72,21 +86,33 @@ export default function Poems({ poems,tags }) {
 
 <Spacer y={6} />
 
-                <div className="flex-wrap justify-center items-bottom flex gap-4 ">
+                <div className="flex justify-between items-bottom ">
+
+                <div className="flex ml-10">
+                  <a href="/">Home</a>
+                  </div>
+                  <div className="flex">
                    <a href="/poems"> <Chip color="default">Give me random</Chip> </a>
-                
+               
                    <Autocomplete
-      defaultItems={tags}
-      label="Select a Tag"
-      
-      className="max-w-xs"
-    >
-      {tags.map((tag) => (
-        <AutocompleteItem key={tag} value={tag}>
-          {tag}
-        </AutocompleteItem>
-      ))}
-    </Autocomplete>
+                        defaultItems={tags}
+                        label="Select a Tag"
+                        className="max-w-xs"
+                        onSelectionChange={(selectedTag) => handleTagSelect(selectedTag)}
+                 >
+                    {tags.map((tag) => (
+                  <AutocompleteItem key={tag} value={tag}>
+                      {tag}
+                  </AutocompleteItem>
+        ))}
+                  </Autocomplete>
+    </div>
+
+    <div className="flex mr-10">
+    <a href="#" onClick={onUploadOpen}>
+                    <Chip color="default">Upload</Chip>
+                </a>
+                  </div>
                
             </div>
            
@@ -118,49 +144,52 @@ export default function Poems({ poems,tags }) {
     </div>
     ))}
 
+<footer>
+        <p></p>
+      </footer>
 
 
-<div className="flex-wrap justify-center items-bottom flex gap-4 ">
-<a href="#" onClick={onUploadOpen}>
-                    <Chip color="default">Upload</Chip>
-                </a>
-                </div>
            </div>
         
     );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ query }) {
   try {
-      const client = await clientPromise;
-      const db = client.db("poems");
+    const client = await clientPromise;
+    const db = client.db("poems");
 
-      // Existing code to fetch poems
-      const poems = await db
-          .collection("poe")
-          .aggregate([ { $sample: { size: 1 } } ])
-          .toArray();
+    const selectedTag = query.tag || null;
 
-      // New code to fetch unique tags
-      const tags = await db
-          .collection("poe")
-          .aggregate([
-              { $unwind: "$tags" }, // Unwind the tags array
-              { $group: { _id: "$tags" } }, // Group by tags
-              { $project: { _id: 0, tag: "$_id" } } // Project the tags
-          ])
-          .toArray();
+    let poems;
+    if (selectedTag) {
+      poems = await db
+        .collection("poe")
+        .find({ tags: selectedTag })
+        .toArray();
+    } else {
+      poems = await db
+        .collection("poe")
+        .aggregate([{ $sample: { size: 1 } }])
+        .toArray();
+    }
 
-      // Extracting the tags from the aggregation result
-      const uniqueTags = tags.map(tagDoc => tagDoc.tag);
+    const tags = await db
+      .collection("poe")
+      .aggregate([
+        { $unwind: "$tags" },
+        { $group: { _id: "$tags" } },
+        { $project: { _id: 0, tag: "$_id" } }
+      ])
+      .toArray();
 
-      return {
-          props: { poems: JSON.parse(JSON.stringify(poems)), tags: uniqueTags },
-      };
+    const uniqueTags = tags.map((tagDoc) => tagDoc.tag);
+
+    return {
+      props: { poems: JSON.parse(JSON.stringify(poems)), tags: uniqueTags },
+    };
   } catch (e) {
-      console.error(e);
-      return { props: { poems: [], tags: [] } };
+    console.error(e);
+    return { props: { poems: [], tags: [] } };
   }
 }
-
-

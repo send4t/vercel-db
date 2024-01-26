@@ -191,9 +191,7 @@ export default function Home({ isConnected }) {
 
       </main>
 
-      <footer>
-        <p></p>
-      </footer>
+      
 
       
     </div>
