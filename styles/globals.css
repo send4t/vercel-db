@@ -2,7 +2,7 @@
 @import "tailwindcss/utilities";
 
 body {
-    color:black;
+    color:rgb(236, 170, 170);
     background-color:rgb(255, 255, 255);
 }
 

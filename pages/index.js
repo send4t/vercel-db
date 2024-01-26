@@ -36,9 +36,9 @@ const ThemeSwitch = () => {
 
   return (
     <div onClick={handleToggle} className="cursor-pointer flex items-center">
-      {isSelected ? <SunIcon /> : <MoonIcon />}
-      <span className="ml-2">Dark mode</span>
-    </div>
+      
+      <span className="ml-2 text-gray-500">Dark mode</span>
+    </div> // needs fixing SVG hydration error
   );
 };
 
@@ -72,17 +72,26 @@ export default function Home({ isConnected }) {
         onPress={onPress} 
         radius="none"
       >
-        <CardHeader className="absolute z-10 bottom-1 flex-col !items-start">
-          <p className="text-large text-white/60 uppercase font-bold">{title}</p>
-          <h4 className="text-white font-medium text-large">{subtitle}</h4>
-        </CardHeader>
+         <CardHeader className="absolute z-10 bottom-1 flex-col !items-start">
+    {isHovered ? (
+      <>
+        <p className="text-xl text-white/60 uppercase font-bold">{title}</p>
+        <h4 className="text-white font-medium text-2xl">{subtitle}</h4>
+      </>
+    ) : (
+      <>
+        <p className="text-large text-white/60 uppercase font-bold">{title}</p>
+        <h4 className="text-white font-medium text-large">{subtitle}</h4>
+      </>
+    )}
+  </CardHeader>
         <Image
           isFooterBlurred
           radius="none"
           removeWrapper
           alt="Card background"
           className={`z-0 w-full h-full object-cover ${isHovered ? '' : 'grayscale'}`}
-          style={{ filter: isHovered ? 'none' : 'grayscale(100%) brightness(40%)' }}
+          style={{ filter: isHovered ? 'none' : 'grayscale(100%) brightness(25%) sepia(50%) hue-rotate(190deg)' }}
           src={src}
         />
       </Card>
@@ -92,9 +101,6 @@ export default function Home({ isConnected }) {
 
 
   return ( 
-
- 
-    
     <div className=" ">
       
      
@@ -119,16 +125,16 @@ export default function Home({ isConnected }) {
   
     <div className="text-left">
    
-      <h1 className="text-2xl font-bold">Tamás<br/> Vonyigás</h1>
+      <h1 className="text-xl  font-bold uppercase">Tamás<br/> Vonyigás</h1>
     </div>
 
     
     <div className="flex-1 flex items-center justify-center">
       <div className="text-left max-w-xl">
-        <h1 className="text-4xl font-bold font-display dark:text-gray-600  md:text-5xl">
+        <h1 className="text-4xl font-bold">
           Welcome to My Portfolio
         </h1>
-        <p className="text-xl mt-3">
+        <p className="text-xl mt-3 font-light">
           I am a developer with a passion for creating beautiful and functional web applications. Take a look around to see what I can do!
         </p>
       </div>
@@ -137,7 +143,7 @@ export default function Home({ isConnected }) {
     
     
     <div className="flex justify-between items-center">
-      <p>Email: <a href="mailto:vonyitomi@gmail.com" className="text-blue-500">vonyitomi@gmail.com</a></p>
+      <p className="text-gray-500">Email: <a href="mailto:vonyitomi@gmail.com" className="text-gray-500">vonyitomi@gmail.com</a></p>
       
       <ThemeSwitch/>
     </div>
@@ -154,7 +160,7 @@ export default function Home({ isConnected }) {
 
 
     <HoverableCard 
-          src="/images/recipes.jpg"
+          src="/images/recipes3.png"
           title="Recipes"
           subtitle="Our favorite recipes"
           onPress={() => router.push('/recipes')}
