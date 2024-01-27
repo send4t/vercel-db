@@ -5,6 +5,7 @@ import UploadPoem from "./poemsUP.js";
 import { MdEdit } from 'react-icons/md';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/router';
+import Footer from '../components/Footer';
 
 
 
@@ -71,7 +72,7 @@ const handleTagSelect = (selectedTag) => {
     
 
     return (
-        <div >
+        <div className="flex flex-col min-h-screen">
 
 
 {backdrops.map((b) => (
@@ -86,12 +87,12 @@ const handleTagSelect = (selectedTag) => {
 
 <Spacer y={6} />
 
-                <div className="flex justify-between items-bottom ">
+                <div className="p-4 flex justify-between items-center">
 
                 <div className="flex ml-10">
                   <a href="/">Home</a>
                   </div>
-                  <div className="flex">
+                  <div className="flex justify-center items-center space-x-4">
                    <a href="/poems"> <Chip color="default">Give me random</Chip> </a>
                
                    <Autocomplete
@@ -116,6 +117,8 @@ const handleTagSelect = (selectedTag) => {
                
             </div>
            
+            <div className="flex-grow">
+
             {poems.map((poem) => (
             <div className="flex justify-center items-center my-20">
             <Card className="max-w-[500px] flex justify-center items-center ">
@@ -143,10 +146,9 @@ const handleTagSelect = (selectedTag) => {
     </Card>
     </div>
     ))}
+       </div>
 
-<footer>
-        <p></p>
-      </footer>
+<Footer />
 
 
            </div>
@@ -165,7 +167,7 @@ export async function getServerSideProps({ query }) {
     if (selectedTag) {
       poems = await db
         .collection("poe")
-        .find({ tags: selectedTag })
+        .aggregate([{ $match: { tags: selectedTag } }, { $sample: { size: 1 } }])
         .toArray();
     } else {
       poems = await db
