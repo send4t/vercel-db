@@ -1,26 +1,11 @@
 
 import { useTheme } from 'next-themes';
 import React, { useState, useEffect } from 'react';
+import ThemeSwitch from '../components/darkMode'
 
-
-const ThemeSwitch = () => {
-  const { theme, setTheme } = useTheme();
-
-  const isSelected = theme === 'dark';
-
-  const handleToggle = () => {
-    setTheme(isSelected ? 'light' : 'dark');
-  };
-
-  return (
-    <div onClick={handleToggle} className="cursor-pointer flex items-center">
-      
-      <span className="ml-2 text-gray-500">Dark mode</span>
-    </div>  
-  );
-};
 
 const Footer = () => {
+  const { theme } = useTheme();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -48,7 +33,7 @@ const Footer = () => {
 
 
     return(
-<footer className="bg-gray-800">
+<footer className={theme === 'dark' ? 'bg-gray-800' : 'bg-gray-300'}>
 <div className="border-t border-gray-600 pt-4 ">
   </div>
   <div className="container mx-auto px-4">

@@ -5,8 +5,7 @@ import {Card, CardHeader, VisuallyHidden, useSwitch, Image, Button,Switch} from 
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTheme } from 'next-themes';
-import {MoonIcon} from "/styles/MoonIcon";
-import {SunIcon} from "/styles/SunIcon";
+import ThemeSwitch from '../components/darkMode';
 
 
 
@@ -25,22 +24,8 @@ export const getServerSideProps = async () => {
 };
 
 
-const ThemeSwitch = () => {
-  const { theme, setTheme } = useTheme();
 
-  const isSelected = theme === 'dark';
 
-  const handleToggle = () => {
-    setTheme(isSelected ? 'light' : 'dark');
-  };
-
-  return (
-    <div onClick={handleToggle} className="cursor-pointer flex items-center">
-      
-      <span className="ml-2 text-gray-500">Dark mode</span>
-    </div> // needs fixing SVG hydration error
-  );
-};
 
 export default function Home({ isConnected }) {
 
