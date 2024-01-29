@@ -44,3 +44,7 @@ next-env.d.ts
 .vs/vercel-db/v17/.wsuo
 .vs/vercel-db/FileContentIndex/5b7d78af-a0a1-4c58-a603-ba950161a936.vsidx
 .vs/vercel-db/FileContentIndex/20a75d71-432f-43be-9786-a91e3860c787.vsidx
+.vs/vercel-db/FileContentIndex/45a77d63-2fa9-4e14-8eaa-1151d3c033b0.vsidx
+.vs/vercel-db/FileContentIndex/19b1b0b3-2905-467d-9f7e-db3b7c6a8f3b.vsidx
+*.vsidx
+.vs/VSWorkspaceState.json

@@ -3,7 +3,6 @@ import React, { Fragment, useState } from "react";
 import {Switch,Card,Chip,Spacer, CardHeader, CardBody, CardFooter, Divider, Image,Modal, ModalContent,Link, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Autocomplete, AutocompleteItem} from "@nextui-org/react";
 import UploadPoem from "./poemsUP.js";
 import { MdEdit } from 'react-icons/md';
-
 import { useRouter } from 'next/router';
 import Footer from '../components/Footer';
 
@@ -109,7 +108,7 @@ const handleTagSelect = (selectedTag) => {
 
     <div className="flex mr-10">
     <a href="#" onClick={onUploadOpen}>
-                    <Chip color="default">Upload</Chip>
+                    <Chip color="success">Upload</Chip>
                 </a>
                   </div>
                
@@ -193,3 +192,8 @@ export async function getServerSideProps({ query }) {
     return { props: { poems: [], tags: [] } };
   }
 }
+
+
+
+
+

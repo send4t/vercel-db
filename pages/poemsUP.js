@@ -93,7 +93,7 @@ export default function UploadPoem() {
         <Spacer y={4} />
 
         <div className="text-center font-bold">
-          <Button color="primary" onClick={handleSubmit}>
+          <Button color="success" onClick={handleSubmit}>
             Send Poem
           </Button>
         </div>

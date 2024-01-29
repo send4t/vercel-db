@@ -4,6 +4,7 @@ import {Switch,Card,Chip,Spacer, CardHeader, CardBody, CardFooter, Divider, Imag
 import UploadRecipe from "./recipesUP.js";
 import { MdEdit } from 'react-icons/md';
 import { useTheme } from 'next-themes';
+import Footer from '../components/Footer';
 
 
 const CustomCheckbox = ({ children }) => {
@@ -108,33 +109,40 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
 
         return (
 
-          <div className="">
+          <div className="flex flex-col min-h-screen">
+
+
+          <div className="p-4 pt-10 flex  items-center">
+            <div className="flex ml-10">
+                  <a href="/">Home</a>
+                  </div>
+
+
+                  <div className="flex flex-grow justify-start pl-10 space-x-4">
+                   <a href="/recipes"> <Chip color="default">Give me random</Chip> </a>
+
+                    <a href="/recipes_30"><Chip variant="shadow" classNames={{
+                             base: "bg-gradient-to-br from-yellow-500 to-red-500 border-small border-white/50 shadow-pink-500/30",
+                             content: "drop-shadow shadow-black text-white",
+                      }}>Less than 30 minutes</Chip> </a> 
+
+                     <a href="/recipes_salad"><Chip variant="shadow" classNames={{
+                            base: "bg-gradient-to-br from-green-500 to-yellow-500 border-small border-white/50 shadow-pink-500/30",
+                            content: "drop-shadow shadow-black text-white",
+                      }}>Salad</Chip></a>
+               
+                   
+                 </div>
+
+                 <div className="flex mr-10">
+                 <a href="#" onClick={onUploadOpen}>
+                    <Chip color="success">Upload</Chip>
+                 </a>
+                  </div>
+
+         </div>
             
 
-               <div className="flex-wrap ml-4 md:ml-40 justify-left items-bottom flex gap-4 py-4 mt-10">
-
-                    <a href="/recipes"> <Chip color="default">Give me random</Chip> </a>
-                   <a href="/recipes_30"><Chip variant="shadow"
-      classNames={{
-        base: "bg-gradient-to-br from-yellow-500 to-red-500 border-small border-white/50 shadow-pink-500/30",
-        content: "drop-shadow shadow-black text-white",
-      }}>Less than 30 minutes</Chip> </a> 
-                    
-                    <Chip variant="shadow"
-      classNames={{
-        base: "bg-gradient-to-br from-blue-500 to-pink-500 border-small border-white/50 shadow-pink-500/30",
-        content: "drop-shadow shadow-black text-white",
-      }}>Dessert</Chip>
-                    
-
-                    <a href="/recipes_salad">
-                    <Chip variant="shadow"
-      classNames={{
-        base: "bg-gradient-to-br from-green-500 to-yellow-500 border-small border-white/50 shadow-pink-500/30",
-        content: "drop-shadow shadow-black text-white",
-      }}>Salad</Chip></a>
-
-                      </div>
 
 {recipes.map((recipe) => (
 <div className="flex flex-col ml-4 md:ml-40 items-center pt-5 ">
@@ -175,32 +183,13 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
       {addCheckboxes(recipe.steps)}
     </div>
   </div>
+ 
 </div>
 
 ))}
 
-<div className="flex-wrap justify-center items-bottom flex gap-4 py-8 ">
-              
-              <Button color="success" onClick={onUploadOpen}>
-         Upload my own
-      </Button>
-  
-  
-  <Switch
-          defaultSelected={theme === 'dark'}
-          size="lg"
-          color="secondary"
-          onChange={toggleDarkMode}
-          thumbIcon={({ isSelected, className }) =>
-            isSelected ? (
-             null
-            ) : (
-             null
-            )
-          }
-        >
-          Dark mode
-        </Switch>
+<div className="">
+             <Footer />
         
                       </div > 
   
