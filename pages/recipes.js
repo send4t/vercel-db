@@ -1,6 +1,6 @@
 import clientPromise from "../lib/mongodb";
 import React, { Fragment, useState } from "react";
-import {Switch,Card,Chip,Spacer, CardHeader, CardBody, CardFooter, Divider, Image,Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Textarea} from "@nextui-org/react";
+import {Chip,Tooltip, Divider, Image,Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Textarea} from "@nextui-org/react";
 import UploadRecipe from "./recipesUP.js";
 import { MdEdit } from 'react-icons/md';
 import { useTheme } from 'next-themes';
@@ -119,17 +119,15 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
 
 
                   <div className="flex flex-grow justify-start pl-10 space-x-4">
-                   <a href="/recipes"> <Chip color="default">Give me random</Chip> </a>
-
-                    <a href="/recipes_30"><Chip variant="shadow" classNames={{
+                   <a href="/recipes"> <Chip variant="shadow" classNames={{
                              base: "bg-gradient-to-br from-yellow-500 to-red-500 border-small border-white/50 shadow-pink-500/30",
                              content: "drop-shadow shadow-black text-white",
-                      }}>Less than 30 minutes</Chip> </a> 
+                      }}>Give me random</Chip> </a> 
+                 
 
-                     <a href="/recipes_salad"><Chip variant="shadow" classNames={{
-                            base: "bg-gradient-to-br from-green-500 to-yellow-500 border-small border-white/50 shadow-pink-500/30",
-                            content: "drop-shadow shadow-black text-white",
-                      }}>Salad</Chip></a>
+                    <a href="/recipes_30"> <Chip color="default">Less than 30 minutes</Chip> </a>
+
+                     <a href="/recipes_salad"><Chip color="default">Salad</Chip> </a>
                
                    
                  </div>
@@ -155,9 +153,21 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
     
     <div className="flex flex-col ml-5 space-y-2">
     <div className="flex items-center">
-    <p className="text-lg mb-2 font-bold text-tealCyan">{recipe.name}</p>
+    <p className="text-lg mb-2 font-bold ">{recipe.name}</p>
     
-    <MdEdit className="ml-2 cursor-pointer" onClick={() => handleEdit(recipe)}/>
+    <div className="pb-2"
+    onMouseOver={e => e.currentTarget.style.transform = "scale(1.3)"}
+    onMouseOut={e => e.currentTarget.style.transform = "scale(1)"}>
+  <Tooltip content="Edit recipe">
+    <button><MdEdit 
+        className="ml-2 cursor-pointer" 
+        onClick={() => handleEdit(recipe)}
+        style={{ transition: "transform 0.35s" }} // Adding transition for smooth effect
+    /> </button> 
+  </Tooltip> 
+ 
+
+    </div>
 </div>
     <div>
         <p className="text-small  mb-1">Prep time</p>
