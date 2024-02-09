@@ -1,8 +1,7 @@
 import clientPromise from "../lib/mongodb";
 import React, { Fragment, useState } from "react";
-import {Switch,Card,Chip,Spacer, CardHeader, CardBody, CardFooter, Divider, Image,Modal, ModalContent,Link, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Autocomplete, AutocompleteItem} from "@nextui-org/react";
+import {Card,Chip,Spacer, CardHeader, CardBody, CardFooter, Divider, Image,Modal, ModalContent, useDisclosure, Autocomplete, AutocompleteItem} from "@nextui-org/react";
 import UploadPoem from "./poemsUP.js";
-import { MdEdit } from 'react-icons/md';
 import { useRouter } from 'next/router';
 import Footer from '../components/Footer';
 

@@ -239,7 +239,7 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
           <ModalFooter>
             <Button onClick={onEditClose}>Cancel</Button>
             <Button
-              color="secondary"
+              color="success"
               onClick={handleSave}
             >
               Save
