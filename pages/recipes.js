@@ -145,11 +145,14 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
 {recipes.map((recipe) => (
 <div className="flex flex-col ml-4 md:ml-40 items-center pt-5 ">
   <div className="flex justify-start items-start w-full mb-10">
-    <div className="flex min-w-400 h-48 bg-gray-300 flex items-center justify-center ">
-          
-    <img src={recipe.image} className="w-full h-full object-contain" alt="Recipe" />
-        
-    </div>
+
+  <div className="w-[400px] h-[250px] overflow-hidden">
+  <img
+    className="w-full h-full object-cover rounded-lg"
+    src={recipe.image}
+    alt="Recipe Image"
+  />
+</div>
     
     <div className="flex flex-col ml-5 space-y-2">
     <div className="flex items-center">
