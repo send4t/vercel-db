@@ -109,9 +109,9 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
 
         return (
 
-          <div className="flex flex-col min-h-screen">
+          <div className="flex flex-col min-h-screen justify-between">
 
-
+          <div className="flex-1">
           <div className="p-4 pt-10 flex  items-center">
             <div className="flex ml-10">
                   <a href="/">Home</a>
@@ -200,7 +200,7 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
 </div>
 
 ))}
-
+</div>
 <div className="">
              <Footer />
         
