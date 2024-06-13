@@ -23,11 +23,11 @@ I've built a portfolio application that's connected with [MongoDB](https://www.m
 - User-friendly interface showing steps and ingredients simultaneously.
 - Includes a filter to sort recipes based on available cooking time.
 
-### 3. Disperse App
+### 3. Polkadot Hungary Community website
 
-- Originally forked from an Ethereum-based app, now modified for the Moonsama network.
-- Designed for community campaigns, allowing for token dispersion to up to 200 addresses in a single transaction.
-- A great tool that's already saved over 40 hours of manual work.
+- Blog which automatically gets articles from IPFS
+- easy stake and nominate site
+- docusaurus based wiki
 
 ### 4. Consultancy Therapy WordPress Site
 
