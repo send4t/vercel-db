@@ -153,9 +153,9 @@ export default function Home({ isConnected }) {
     
     <HoverableCard 
           src="/images/chain.jpg"
-          title="WEB3 dApp"
-          subtitle="Disperse tokens"
-          onPress={() => window.open('https://disperseappexo.vercel.app','_blank')}
+          title="WEB3 community"
+          subtitle="Blog,stake management,wiki"
+          onPress={() => window.open('https://polkadothungary.net','_blank')}
         />
        
        <HoverableCard 
