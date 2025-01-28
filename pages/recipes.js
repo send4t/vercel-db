@@ -108,104 +108,88 @@ const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclo
 
 
         return (
+<div className="flex flex-col min-h-screen justify-between">
+  <div className="flex-1">
+    <div className="p-4 pt-10 flex flex-col md:flex-row items-center">
+      <div className="flex mb-4 md:mb-0 md:ml-10">
+        <a href="/">Home</a>
+      </div>
 
-          <div className="flex flex-col min-h-screen justify-between">
+      <div className="flex flex-grow justify-center md:justify-start md:pl-10 space-x-4">
+        <a href="/recipes">
+          <Chip variant="shadow" classNames={{
+            base: "bg-gradient-to-br from-yellow-500 to-red-500 border-small border-white/50 shadow-pink-500/30",
+            content: "drop-shadow shadow-black text-white",
+          }}>Give me random</Chip>
+        </a>
+        <a href="/recipes_30"><Chip color="default">Less than 30 minutes</Chip></a>
+        <a href="/recipes_salad"><Chip color="default">Salad</Chip></a>
+      </div>
 
-          <div className="flex-1">
-          <div className="p-4 pt-10 flex  items-center">
-            <div className="flex ml-10">
-                  <a href="/">Home</a>
-                  </div>
-
-
-                  <div className="flex flex-grow justify-start pl-10 space-x-4">
-                   <a href="/recipes"> <Chip variant="shadow" classNames={{
-                             base: "bg-gradient-to-br from-yellow-500 to-red-500 border-small border-white/50 shadow-pink-500/30",
-                             content: "drop-shadow shadow-black text-white",
-                      }}>Give me random</Chip> </a> 
-                 
-
-                    <a href="/recipes_30"> <Chip color="default">Less than 30 minutes</Chip> </a>
-
-                     <a href="/recipes_salad"><Chip color="default">Salad</Chip> </a>
-               
-                   
-                 </div>
-
-                 <div className="flex mr-10">
-                 <a href="#" onClick={onUploadOpen}>
-                    <Chip color="success">Upload</Chip>
-                 </a>
-                  </div>
-
-         </div>
-            
-
-
-{recipes.map((recipe) => (
-<div className="flex flex-col ml-4 md:ml-40 items-center pt-5 ">
-  <div className="flex justify-start items-start w-full mb-10">
-
-  <div className="w-[400px] h-[250px] overflow-hidden">
-  <img
-    className="w-full h-full object-cover rounded-lg"
-    src={recipe.image}
-    alt="Recipe Image"
-  />
-</div>
-    
-    <div className="flex flex-col ml-5 space-y-2">
-    <div className="flex items-center">
-    <p className="text-lg mb-2 font-bold ">{recipe.name}</p>
-    
-    <div className="pb-2"
-    onMouseOver={e => e.currentTarget.style.transform = "scale(1.3)"}
-    onMouseOut={e => e.currentTarget.style.transform = "scale(1)"}>
-  <Tooltip content="Edit recipe">
-    <button><MdEdit 
-        className="ml-2 cursor-pointer" 
-        onClick={() => handleEdit(recipe)}
-        style={{ transition: "transform 0.35s" }} // Adding transition for smooth effect
-    /> </button> 
-  </Tooltip> 
- 
-
+      <div className="flex mt-4 md:mt-0 md:mr-10">
+        <a href="#" onClick={onUploadOpen}>
+          <Chip color="success">Upload</Chip>
+        </a>
+      </div>
     </div>
-</div>
-    <div>
-        <p className="text-small  mb-1">Prep time</p>
-        <p className="text-small text-lightCyan">{recipe.prepTime}</p>
-        
-    </div>
-    <div className="mt-2">
-        <p className="text-small  mb-1">Total time</p>
-        <p className="text-small text-lightCyan">{recipe.totalTime}</p>
-    </div>
-</div>
+
+    {recipes.map((recipe) => (
+      <div key={recipe._id} className="flex flex-col ml-4 md:ml-40 items-center pt-5">
+        <div className="flex flex-col md:flex-row justify-start items-start w-full mb-10">
+          <div className="w-full md:w-[400px] h-[250px] overflow-hidden">
+            <img
+              className="w-full h-full object-cover rounded-lg"
+              src={recipe.image}
+              alt="Recipe Image"
+            />
+          </div>
+
+          <div className="flex flex-col mt-4 md:mt-0 md:ml-5 space-y-2">
+            <div className="flex items-center">
+              <p className="text-lg mb-2 font-bold">{recipe.name}</p>
+              <div className="pb-2"
+                onMouseOver={e => e.currentTarget.style.transform = "scale(1.3)"}
+                onMouseOut={e => e.currentTarget.style.transform = "scale(1)"}>
+                <Tooltip content="Edit recipe">
+                  <button><MdEdit
+                    className="ml-2 cursor-pointer"
+                    onClick={() => handleEdit(recipe)}
+                    style={{ transition: "transform 0.35s" }} // Adding transition for smooth effect
+                  /></button>
+                </Tooltip>
+              </div>
+            </div>
+            <div>
+              <p className="text-small mb-1">Prep time</p>
+              <p className="text-small text-lightCyan">{recipe.prepTime}</p>
+            </div>
+            <div className="mt-2">
+              <p className="text-small mb-1">Total time</p>
+              <p className="text-small text-lightCyan">{recipe.totalTime}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row justify-start w-full">
+          <div className="flex flex-col w-full md:w-1/3 max-w-sm space-y-4 pr-2">
+            <p className="text-lg text-tealCyan font-bold">Ingredients:</p>
+            <Divider />
+            {addCheckboxes(recipe.recipe)}
+          </div>
+          <div className="flex flex-col w-full md:w-2/3 max-w-md space-y-4 pl-2">
+            <p className="text-lg text-tealCyan font-bold">Steps:</p>
+            <Divider />
+            {addCheckboxes(recipe.steps)}
+          </div>
+        </div>
+      </div>
+    ))}
   </div>
-  <div className="flex justify-start w-full">
-    <div className="flex flex-col w-1/3 max-w-sm space-y-4 pr-2">
-    <p className="text-lg text-tealCyan font-bold">Ingredients:</p>
-      <Divider/>
-      {addCheckboxes(recipe.recipe)}
-      
-    </div>
-    <div className="flex flex-col w-2/3 max-w-md space-y-4 pl-2">
-    <p className="text-lg  text-tealCyan font-bold">Steps:</p>
-      <Divider/>
-      {addCheckboxes(recipe.steps)}
-    </div>
-  </div>
- 
-</div>
 
-))}
-</div>
-<div className="">
-             <Footer />
-        
-                      </div > 
-  
+  <div className="">
+    <Footer />
+  </div>
+
     
 
 
